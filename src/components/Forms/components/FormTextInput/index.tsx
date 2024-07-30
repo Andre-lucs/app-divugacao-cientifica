@@ -1,16 +1,15 @@
 import { useState } from 'react';
-import { TextInput, FormTextInput, Label } from './style';
+import { BaseTextInput, FormTextInput, TextInputLabel } from '@/src/components/Forms/styles';
+import { FormInputProps } from '@/src/components/Forms/types';
 
-
-type props ={
-  value?: string;
+type props = FormInputProps & {
   onChangeText?: (text: string) => void;
   placeholder?: string;
   label?: string;
   isPassword?: boolean;
 }
 
-export default function Index({value,onChangeText, placeholder,label,isPassword}: props){
+export default function({value,onChangeText, placeholder,label,isPassword}: props){
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   const togglePasswordVisibility = () => {
@@ -19,8 +18,8 @@ export default function Index({value,onChangeText, placeholder,label,isPassword}
 
   return (
     <FormTextInput>
-      {label && <Label>{label}</Label>}
-      <TextInput 
+      {label && <TextInputLabel>{label}</TextInputLabel>}
+      <BaseTextInput 
       value={value} 
       onChangeText={onChangeText} 
       placeholder={placeholder}
@@ -28,7 +27,6 @@ export default function Index({value,onChangeText, placeholder,label,isPassword}
       />
     </FormTextInput>
   ) 
-  
 
 }
 

@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { Pressable } from "react-native"
-import { Text } from "./style";
+import { DiscreteFormButtonText } from "@/src/components/Forms/styles";
 
 type props = {
   children: ReactNode;
@@ -10,7 +10,7 @@ type props = {
 export default function Index(p:props){
   return (
     <Pressable onPress={p.onPress}>
-      <Text>{p.children}</Text>
+      <DiscreteFormButtonText>{p.children}</DiscreteFormButtonText>
     </Pressable>
   )
 }
