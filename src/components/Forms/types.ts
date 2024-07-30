@@ -1,5 +1,5 @@
 export type FormInputProps = {
-  value: string;
-  key: string;
-  required: boolean;
+  value?: any;
+  key?: string;
+  required?: boolean;
 }

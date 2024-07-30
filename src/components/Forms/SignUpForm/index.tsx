@@ -1,6 +1,8 @@
 import { BaseForm, FormStep } from "@/src/components/Forms/components/BaseForm"
 import FormTextInput from "@/src/components/Forms/components/FormTextInput"
-import { useRef, useState } from "react";
+import { useState } from "react";
+import FormDateInput from "../components/FormDateInput";
+import FormCheckBox from "../components/FormCheckBox";
 
 type props = {
   onSubmit?: (data: formResponse) => void;
@@ -24,6 +26,9 @@ export default function Index(p: props) {
   const handleChange = (field: keyof formResponse) => (value: string) => {
     setRes(prevRes => ({ ...prevRes, [field]: value }));
   };
+  const handleChangeDate = (value:Date) =>{
+    setRes(prevRes => ({...prevRes, 'date':value}))
+  }
 
   return (
     <BaseForm onSubmit={() => p.onSubmit ? p.onSubmit(res) : undefined} backButton={null} doneButton="Cadastrar" nextButton="Próximo">
@@ -81,8 +86,14 @@ export default function Index(p: props) {
           value={res.phone || ''}
           required
         />
-        {/*FormDateInput*/}
-        {/*FormCheckBoxInput*/}
+        <FormDateInput
+          key="date"
+          required
+          value={res.date || new Date()}
+          label="Data de Nascimento:"
+          onChangeDate={handleChangeDate}
+        />
+        <FormCheckBox key="acceptEmails" required={false} value={res.acceptEmails} onChange={(value)=>setRes(pastRes => ({...pastRes, 'acceptEmails': value}))}/>
       </FormStep>
     </BaseForm>
   );

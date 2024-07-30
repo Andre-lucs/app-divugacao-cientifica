@@ -1,4 +1,5 @@
 import styled from "styled-components/native";
+import { Pressable } from 'react-native';
 
 // BaseForm
 export const Form = styled.View`
@@ -45,6 +46,7 @@ export const BaseTextInput = styled.TextInput`
   max-height: 48px;
   display: flex;
   flex-grow: 1;
+  color: #D9D9D9
 `;
 
 export const FormTextInput = styled.View`
@@ -56,4 +58,35 @@ export const TextInputLabel = styled.Text`
   font-size: 15px;
   font-weight: normal;
   color: #52525C;
+`;
+
+export const FormDateInput = styled.View`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  border: 2px solid #D9D9D9;
+  border-radius: 8px;
+  padding: 10px;
+  min-height: 48px;
+  max-height: 48px;
+  display: flex;
+  flex-grow: 1;
+`;
+
+export const FormDateInputText = styled.Text`
+  font-size: 15px;
+  color: #D9D9D9;
+`;
+
+export const FormDatePressable = styled.Pressable`
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+`;
+
+export const FormCheckBox = styled.View`
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
 `;
