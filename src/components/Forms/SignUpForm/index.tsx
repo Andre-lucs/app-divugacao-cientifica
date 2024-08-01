@@ -93,7 +93,9 @@ export default function Index(p: props) {
           label="Data de Nascimento:"
           onChangeDate={handleChangeDate}
         />
-        <FormCheckBox key="acceptEmails" required={false} value={res.acceptEmails} onChange={(value)=>setRes(pastRes => ({...pastRes, 'acceptEmails': value}))}/>
+        <FormCheckBox key="acceptEmails" required={false} value={res.acceptEmails} onChange={(value)=>setRes(pastRes => ({...pastRes, 'acceptEmails': value}))}>
+          Receber emails sobre novos eventos
+        </FormCheckBox>
       </FormStep>
     </BaseForm>
   );

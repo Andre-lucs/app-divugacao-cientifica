@@ -1,5 +1,5 @@
 import styled from "styled-components/native";
-import { Pressable } from 'react-native';
+import CB from "expo-checkbox";
 
 // BaseForm
 export const Form = styled.View`
@@ -88,5 +88,12 @@ export const FormDatePressable = styled.Pressable`
 export const FormCheckBox = styled.View`
   display: flex;
   flex-direction: row;
+  align-items: center;
   gap: 8px;
+`;
+
+export const CheckBox = styled(CB)`
+  width: 15px;
+  height: 15px;
+  border-radius: 5px;
 `;

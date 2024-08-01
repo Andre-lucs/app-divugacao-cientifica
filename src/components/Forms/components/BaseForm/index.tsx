@@ -2,10 +2,9 @@ import React, { PropsWithChildren, ReactElement, useEffect, useState } from "rea
 import { FormBody,Form } from '@/src/components/Forms/styles';
 import FormButton from "../FormButton";
 import { Alert } from "react-native";
-import FormTextInput from "../FormTextInput";
 
 type props = {
-  children: ReactElement[],
+  children: ReactElement[] | ReactElement,
   nextButton?: string,
   backButton?: string | null,  
   doneButton?: string,
@@ -19,13 +18,12 @@ export function BaseForm(p:props){
   const [error, setError] = useState('');
 
   useEffect(()=>{
-    setStepCount(p.children.length)
+    setStepCount((p.children instanceof Array) ? p.children.length : 1)
   },[p.children])
 
   const validateStep = () => {
-    const currentStepChildren = p.children.filter((child, index) => index === step - 1);
+    const currentStepChildren = (p.children instanceof Array) ? p.children.filter((child, index) => index === step - 1) : [p.children];
     for (let child of currentStepChildren[0].props["children"]) {
-      console.log('lololololg',child.props.required, child.props.value);
       if (child.props.required && !child.props.value) {
         setError('Please fill all required fields.');
         return false;
@@ -56,7 +54,10 @@ export function BaseForm(p:props){
 
   return (
     <Form>
-      {p.children.filter((child, index) => index === step - 1)}
+      {p.children instanceof Array 
+        ? p.children.filter((child, index) => index === step - 1) 
+        : p.children
+      }
         
       {step > 1 && p.backButton != null && (
         <FormButton onPress={handlePrevious}>{p.backButton || "Back"}</FormButton>
