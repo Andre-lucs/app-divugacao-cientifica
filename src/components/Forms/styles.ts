@@ -46,7 +46,7 @@ export const BaseTextInput = styled.TextInput`
   max-height: 48px;
   display: flex;
   flex-grow: 1;
-  color: #D9D9D9
+  color: #000;
 `;
 
 export const FormTextInput = styled.View`

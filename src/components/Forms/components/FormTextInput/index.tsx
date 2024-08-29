@@ -20,6 +20,7 @@ export default function({value,onChangeText, placeholder,label,isPassword}: prop
     <FormTextInput>
       {label && <TextInputLabel>{label}</TextInputLabel>}
       <BaseTextInput 
+      placeholderTextColor="#D9D9D9"
       value={value} 
       onChangeText={onChangeText} 
       placeholder={placeholder}
