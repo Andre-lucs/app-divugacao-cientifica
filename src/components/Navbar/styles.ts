@@ -9,8 +9,8 @@ export const NavbarContainer = styled.View`
   background-color: #107039; /* Cor de fundo da navbar */
   padding: 10px 0;
   width: 100%;
-  height: 66;
-  gap: 30;
+  height: 66px;
+  gap: 30px;
 `;
 
 export const NavItem = styled(TouchableOpacity)`
@@ -25,6 +25,6 @@ export const NavText = styled(Text)`
 `;
 
 export const NavbarIcon = styled.Image`
-    height: 35;
-    width: 35;
+    height: 35px;
+    width: 35px;
 `;
