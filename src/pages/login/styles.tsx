@@ -1,6 +1,6 @@
 import styled from "styled-components/native";
 
-export const RegisterButton = styled.Pressable`
+export const RegisterButtonText = styled.Text`
   color: green;
   font-weight: bold;
 `;
@@ -17,13 +17,16 @@ export const LoginPageView = styled.View`
   flex: 1;
   flex-direction: column;
   justify-items: flex-end;
-  padding: 0.8rem;
+  padding: 25px 10px;
 `;
 
 export const LogoImage = styled.Image`
-  scale: 0.8;
+  scale: 80%;
 `;
 
 export const BottomTextView = styled.View`
   align-self: center;
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
 `;

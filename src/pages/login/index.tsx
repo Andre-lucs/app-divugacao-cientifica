@@ -1,6 +1,6 @@
-import { View, Text } from "react-native";
+import { View, Text, Pressable } from "react-native";
 import LoginForm from '../../components/Forms/LoginForm/index';
-import { RegisterButton, MainLoginView, LogoImage, BottomTextView,LoginPageView } from "./styles";
+import { RegisterButtonText, MainLoginView, LogoImage, BottomTextView,LoginPageView } from "./styles";
 
 export default function LoginPage () {
     return (
@@ -11,10 +11,10 @@ export default function LoginPage () {
             </MainLoginView>
             
             <BottomTextView>
-                <Text>
-                    Não tem uma conta? 
-                    <RegisterButton onPress={()=> {console.log("asd")}}> Registrar-se</RegisterButton>
-                </Text>               
+                <Text>Não tem uma conta?</Text>               
+                <Pressable onPress={()=> {console.log("asd")}}>
+                    <RegisterButtonText>Registrar-se</RegisterButtonText>
+                </Pressable>
             </BottomTextView>
         </LoginPageView>
     )
