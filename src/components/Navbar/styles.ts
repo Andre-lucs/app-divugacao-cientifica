@@ -4,10 +4,7 @@ import { TouchableOpacity, Text } from 'react-native';
 
 export const NavbarContainer = styled.View`
   flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  background-color: #107039; /* Cor de fundo da navbar */
-  padding: 10px 0;
+  background-color: #107039; 
   width: 100%;
   height: 66px;
   gap: 30px;
@@ -16,12 +13,20 @@ export const NavbarContainer = styled.View`
 export const NavItem = styled(TouchableOpacity)`
   flex: 1;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
 `;
 
 export const NavText = styled(Text)`
-  color: #ffffff; /* Cor do texto dos itens de navegação */
-  font-size: 16;
+  color: #ffffff;
+  width: 60px;
+  height: 60px;
+  flex: 1;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const NavbarIcon = styled.Image`
