@@ -1,6 +1,6 @@
 import styled from "styled-components/native";
 
-export const RegisterButtonText = styled.Text`
+export const BottomTextButton = styled.Text`
   color: green;
   font-weight: bold;
 `;
