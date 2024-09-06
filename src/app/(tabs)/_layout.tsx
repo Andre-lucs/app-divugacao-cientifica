@@ -13,7 +13,9 @@ export default function TabLayout(){
       tabBarItemStyle: {height: 66, paddingBottom: 5},
       tabBarStyle: {backgroundColor: Colors.primary, height: 66},
       header: (props) => <Header/>,
-      }}>
+      }}
+      backBehavior="history"
+      >
       <Tabs.Screen 
         name="index" 
         options={{ 
