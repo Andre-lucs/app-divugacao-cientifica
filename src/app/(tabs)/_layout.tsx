@@ -1,15 +1,17 @@
 import { Tabs } from "expo-router";
 import Header from "@/src/components/Header";
 import Feather from '@expo/vector-icons/Feather';
+import Colors from "@/src/styles/Colors";
 
 export default function TabLayout(){
   return (
     <Tabs screenOptions={{ 
+      tabBarShowLabel:true,
       tabBarActiveTintColor: 'white',
-      tabBarActiveBackgroundColor: 'darkgreen',
+      tabBarActiveBackgroundColor: Colors.darkprimary,
       tabBarInactiveTintColor: 'white',
       tabBarItemStyle: {height: 66, paddingBottom: 5},
-      tabBarStyle: {backgroundColor: '#107039', height: 66, justifyContent:'center'},
+      tabBarStyle: {backgroundColor: Colors.primary, height: 66},
       header: (props) => <Header/>,
       }}>
       <Tabs.Screen 
