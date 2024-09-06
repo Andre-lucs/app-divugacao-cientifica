@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { View } from "react-native";
-import FormInput from "../components/FormTextInput";
-import DiscreteButton from "../components/DiscreteButton"
-import { BaseForm,FormStep } from "../components/BaseForm";
+import { BaseForm,FormStep, DiscreteButton, FormTextInput } from "@/src/components/Forms/components";
 import { LoginFormView } from "./styles";
 
 type props = {
@@ -19,8 +17,8 @@ export default function LoginForm(p: props) {
   <LoginFormView>
     <BaseForm onSubmit={()=>p.onSubmit(email, senha)} doneButton="Entrar">
       <FormStep>
-        <FormInput value={email} onChangeText={setEmail} required key="email" placeholder="Email"/>
-        <FormInput value={senha} onChangeText={setSenha} required key="password" isPassword placeholder="Senha" />
+        <FormTextInput value={email} onChangeText={setEmail} required key="email" placeholder="Email"/>
+        <FormTextInput value={senha} onChangeText={setSenha} required key="password" isPassword placeholder="Senha" />
       </FormStep>
     </BaseForm>
     <DiscreteButton onPress={p.forgotPassword}>Esqueceu a senha?</DiscreteButton>

@@ -1,8 +1,5 @@
-import { BaseForm, FormStep } from "@/src/components/Forms/components/BaseForm"
-import FormTextInput from "@/src/components/Forms/components/FormTextInput"
+import { FormTextInput, BaseForm, FormStep, FormDateInput, FormCheckBox } from "@/src/components/Forms/components"
 import { useState } from "react";
-import FormDateInput from "../components/FormDateInput";
-import FormCheckBox from "../components/FormCheckBox";
 
 type props = {
   onSubmit?: (data: formResponse) => void;
