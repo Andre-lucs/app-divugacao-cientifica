@@ -1,11 +1,12 @@
+import Colors from "@/src/styles/Colors";
 import styled from "styled-components/native";
 
 
 export const HeaderBackground = styled.View`
-  background-color: #107039;
-  padding: 30px;
+  background-color: ${Colors.primary};
+  padding: 8px 20px;
   width: 100%;
-  height: 90px;
+  height: 70px;
 `;
 
 export const HeaderContent = styled.View`
