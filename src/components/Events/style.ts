@@ -3,11 +3,11 @@ import styled from "styled-components/native";
 
 export const EventPreview = styled.View`
     flex-direction: row;
-    margin: 100px;
-    width: 320px;
-    height: 150px;
+    width: 380px;
+    height: 160px;
     align-items: center;
     padding: 15px;
+    margin-bottom: 10px;
     border-radius: 10px;
     border-width: 2px;       
     border-color: #D9D9D9;       
@@ -41,10 +41,10 @@ export const EventCategoryPreview = styled.Text`
     background-color: #4CAC33;
     text-align: center;
     color: white;
-    border-radius: 12px; /* Ajustado para arredondar a borda */
+    border-radius: 12px; 
     height: 25px;
     width: 35px;
-    line-height: 25px; /* Alinha o texto verticalmente */
+    line-height: 25px; 
 `;
 
 export const CategoryInfo = styled.View`

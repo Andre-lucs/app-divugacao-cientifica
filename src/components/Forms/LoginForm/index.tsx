@@ -17,8 +17,8 @@ export default function LoginForm(p: props) {
   <LoginFormView>
     <BaseForm onSubmit={()=>p.onSubmit(email, senha)} doneButton="Entrar">
       <FormStep>
-        <FormTextInput value={email} onChangeText={setEmail} required key="email" placeholder="Email"/>
-        <FormTextInput value={senha} onChangeText={setSenha} required key="password" isPassword placeholder="Senha" />
+        <FormTextInput value={email} onChangeText={setEmail} required key="email" placeholder="Insira seu Email" label="Email"/>
+        <FormTextInput value={senha} onChangeText={setSenha} required key="password" label="Senha" isPassword placeholder="Insira sua Senha" />
       </FormStep>
     </BaseForm>
     <DiscreteButton onPress={p.forgotPassword}>Esqueceu a senha?</DiscreteButton>
