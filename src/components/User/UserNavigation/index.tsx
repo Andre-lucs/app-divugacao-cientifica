@@ -4,7 +4,7 @@ import Feather from '@expo/vector-icons/Feather';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import Colors from '@/src/styles/Colors';
-import RowDetail from '../../RowDetail';
+import RowDetail from '@/src/components/RowDetail';
 
 interface NavigationItem {
     icon: JSX.Element;

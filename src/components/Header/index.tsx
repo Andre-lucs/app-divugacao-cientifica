@@ -1,4 +1,4 @@
-import { HeaderBackground, HeaderContent, HeaderImage } from "./styles";
+import { HeaderBackground, HeaderContent, HeaderImage } from "@/src/components/Header/styles";
 import Feather from '@expo/vector-icons/Feather';
 
 

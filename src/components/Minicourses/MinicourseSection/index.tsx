@@ -1,6 +1,6 @@
 import { EventPageTitle } from "@/src/pages/events";
-import { MinicourseSection } from "../styles";
-import Minicourse from "../Minicourse";
+import { MinicourseSection } from "@/src/components/Minicourses/styles";
+import Minicourse from "@/src/components/Minicourses/Minicourse";
 
 export default function () {
     return (

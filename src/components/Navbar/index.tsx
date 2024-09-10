@@ -1,4 +1,4 @@
-import { NavbarContainer, NavbarIcon, NavItem, NavText } from "./styles";
+import { NavbarContainer, NavbarIcon, NavItem, NavText } from "@/src/components/Navbar/styles";
 
 
 export default function () {

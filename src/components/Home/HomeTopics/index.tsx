@@ -1,5 +1,5 @@
 import { ImageSourcePropType, StyleSheet, View } from 'react-native';
-import HomeTopic from '../components/HomeTopic';
+import HomeTopic from '@/src/components/Home/components/HomeTopic';
 
 interface Topic {
   icon: ImageSourcePropType;
