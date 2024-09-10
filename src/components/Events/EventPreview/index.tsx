@@ -1,5 +1,5 @@
 import { Image, View, Text, StyleSheet } from "react-native";
-import { ArrowIcon, CategoryInfo, EventCategoryPreview, EventDatePreview, EventImagePreview, EventNamePreview, EventPreview, EventPreviewInfo } from "../style";
+import { ArrowIcon, CategoryInfo, EventCategoryPreview, EventDatePreview, EventImagePreview, EventNamePreview, EventPreview, EventPreviewInfo } from "../styles";
 import { PropsWithChildren } from "react";
 
 type Props = PropsWithChildren<{

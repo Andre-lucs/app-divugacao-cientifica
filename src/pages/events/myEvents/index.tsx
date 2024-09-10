@@ -5,9 +5,7 @@ import EventPreview from "@/src/components/Events/EventPreview";
 import { ContainerPageEvents, HeaderPageEvents, TitlePageEvents } from "..";
 
 
-export default function () {
-
-
+export default function MyEventsPage () {
   return (
     <ContainerPageEvents>
       <HeaderPageEvents>
