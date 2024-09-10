@@ -9,8 +9,7 @@ export default function () {
 const styles = StyleSheet.create({
     row:{
         width: 366,
-        marginLeft: 15,
-        height: 2,
+        height: 1.5,
         backgroundColor: "#d6dce5"
     }
 })
