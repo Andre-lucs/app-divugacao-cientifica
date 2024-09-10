@@ -1,5 +1,6 @@
 import styled from "styled-components/native";
 import CB from "expo-checkbox";
+import { useTheme } from "react-native-paper";
 
 // BaseForm
 export const Form = styled.View`
@@ -54,10 +55,10 @@ export const FormTextInput = styled.View`
   gap: 8px;
 `;
 
-export const TextInputLabel = styled.Text`
+export const TextInputErrorLabel = styled.Text`
   font-size: 15px;
   font-weight: normal;
-  color: #52525C;
+  color: ${()=> useTheme().colors.error};
 `;
 
 export const FormDateInput = styled.View`

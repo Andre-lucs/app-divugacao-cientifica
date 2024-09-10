@@ -1,6 +1,6 @@
 import { View, Text, Pressable } from "react-native";
 import { BottomTextButton, MainLoginView, LogoImage, BottomTextView,LoginPageView } from "@/src/pages/auth/styles";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
 import { SignUpForm } from "@/src/components/Forms";
 
 export default function LoginPage () {
@@ -8,7 +8,7 @@ export default function LoginPage () {
         <LoginPageView>
             <MainLoginView>
                 <LogoImage source={require("@/assets/images/logo.png")}/>
-                <SignUpForm onSubmit={()=>{}} />
+                <SignUpForm onSubmit={()=>{router.replace("/")}} />
             </MainLoginView>
             
             <BottomTextView>

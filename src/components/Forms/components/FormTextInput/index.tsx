@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { BaseTextInput, FormTextInput, TextInputLabel } from '@/src/components/Forms/styles';
+import { FormTextInput, TextInputErrorLabel } from '@/src/components/Forms/styles';
 import { FormInputProps } from '@/src/components/Forms/types';
 import { TextInput, useTheme } from 'react-native-paper';
 
@@ -8,7 +8,6 @@ type props = FormInputProps & {
   placeholder?: string;
   label?: string;
   isPassword?: boolean;
-  error?: boolean;
 }
 
 export default function({value,onChangeText, placeholder,label,isPassword, error}: props){
@@ -27,13 +26,14 @@ export default function({value,onChangeText, placeholder,label,isPassword, error
       value={value}
       placeholder={placeholder}
       onChangeText={onChangeText}
-      error={error}
+      error={!!error}
       style={{backgroundColor: theme.colors.surface}}
       secureTextEntry={isPassword && !isPasswordVisible}
       right={isPassword ? <TextInput.Icon onPress={togglePasswordVisibility} icon="eye" /> : ''}
       outlineColor={theme.colors.outline}
       outlineStyle={{borderWidth: 2, borderRadius:8}}
       />
+      {error && <TextInputErrorLabel>{error}</TextInputErrorLabel>}
     </FormTextInput>
   ) 
 

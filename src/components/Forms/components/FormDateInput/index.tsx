@@ -1,5 +1,5 @@
 import { FormInputProps } from "../../types";
-import { FormDateInput, FormDateInputText, FormDatePressable } from "@/src/components/Forms/styles";
+import { FormDateInput, FormDateInputText, FormDatePressable, TextInputErrorLabel } from "@/src/components/Forms/styles";
 import Ionicons from '@expo/vector-icons/Ionicons';
 import DatePicker, { DateTimePickerEvent } from '@react-native-community/datetimepicker'
 import { useEffect, useState } from "react";
@@ -36,7 +36,7 @@ export default function(p:props){
         {p.value instanceof Date && `${p.value.getDay()}/${p.value.getMonth()}/${p.value.getFullYear()}`}
       </FormDateInputText>
     </FormDateInput>
-
+    {p.error && <TextInputErrorLabel>{p.error}</TextInputErrorLabel>}
   </FormDatePressable>
   )
 }
