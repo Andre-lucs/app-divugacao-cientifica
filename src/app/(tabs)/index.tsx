@@ -1,28 +1,47 @@
-import { Alert, Button, Text, View, TextInput } from "react-native";
+import { Alert, Button, Text, View, TextInput, StyleSheet, ScrollView } from "react-native";
 import { useState } from "react";
 import { Link } from "expo-router";
-import { FormButton } from "@/src/components/Forms/components";
 import React from "react";
+import HomeTopics from "@/src/components/Home/HomeTopics";
+import SimpleEventList from "@/src/components/Events/SimpleEventList";
+
 
 export default function Index() {
   const [date, setDate] = useState(new Date())
   
+
   
   return (
-    <View
+    <ScrollView
       style={{
         flex: 1,
-        justifyContent: "flex-start",
-        alignItems: "center",
-        flexGrow:1,
+
+        padding: 20,
         flexDirection:"column",
         width:'100%',
-        borderWidth: 10, 
-        borderColor: '#ccc',
       }}
-    >
-      <Text>Edit app/index.tsx to edit this screen.</Text>   
-      </View>
+    > 
+        <Text style={styles.title}>Bem vindo(a)!</Text>
+        <HomeTopics/>  
+        <View style={styles.eventsList}>
+          <SimpleEventList title="Programação:"/> 
+          <SimpleEventList title="GameDev:"/> 
+          <SimpleEventList title="IA:"/> 
+        </View>
+      </ScrollView>
   );
-
 }
+
+const styles = StyleSheet.create({
+  title:{
+    fontSize: 25,
+    fontWeight: "600",
+    margin: 20,
+
+  },
+  eventsList: {
+    gap: 20,
+    paddingBottom: 50,
+    paddingTop: 20
+  }
+})

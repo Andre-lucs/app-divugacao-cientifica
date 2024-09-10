@@ -34,7 +34,7 @@ export default function RootLayout() {
         <Stack.Screen name="event" options={{headerShown: false}}/>
         <Stack.Screen name="myevent" options={{headerShown: false}}/>
         <Stack.Screen name="history" options={{headerShown: false}}/>
-        <Stack.Screen name="myEvents" options={{headerShown: false}}/>
+        <Stack.Screen name="myevents" options={{headerShown: false}}/>
       </Stack>
     </PaperProvider>
   );
