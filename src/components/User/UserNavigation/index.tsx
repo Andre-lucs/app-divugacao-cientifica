@@ -20,7 +20,8 @@ const navigations: NavigationItem[] = [
     },
     {
         icon: <Feather name="edit" size={24} color={Colors.primary} />,
-        title: "Eventos inscritos"
+        title: "Eventos inscritos",
+        path:"/user/history"
     },
     {
         icon: <Feather name="upload" size={24} color={Colors.primary} />,
@@ -37,7 +38,8 @@ const navigations: NavigationItem[] = [
     },
     {
         icon: <Feather name="archive" size={24} color={Colors.primary} />,
-        title: "Eventos criados"
+        title: "Eventos criados",
+        path: "/user/event"
     },
 ];
 
