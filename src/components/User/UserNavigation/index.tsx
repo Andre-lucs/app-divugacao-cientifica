@@ -5,10 +5,12 @@ import AntDesign from '@expo/vector-icons/AntDesign';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import Colors from '@/src/styles/Colors';
 import RowDetail from '@/src/components/RowDetail';
+import { useRouter } from 'expo-router';
 
 interface NavigationItem {
     icon: JSX.Element;
     title: string;
+    path?: string;
 }
 
 const navigations: NavigationItem[] = [
@@ -22,7 +24,8 @@ const navigations: NavigationItem[] = [
     },
     {
         icon: <Feather name="upload" size={24} color={Colors.primary} />,
-        title: "Atualizar informações"
+        title: "Atualizar informações",
+        path: "/user/updateProfile"
     },
     {
         icon: <MaterialIcons name="article" size={24} color={Colors.primary} />,
@@ -40,8 +43,14 @@ const navigations: NavigationItem[] = [
 
 export default function () {
 
+    const router = useRouter();
+
     const renderItem = ({ item }: { item: NavigationItem }) => (
-        <TouchableOpacity style={styles.item} >
+        <TouchableOpacity style={styles.item} onPress={()=>{
+            if(item.path){
+                router.push(item.path);
+            }
+        }}>
             {item.icon}
             <Text style={styles.title}>{item.title}</Text>
         </TouchableOpacity>
