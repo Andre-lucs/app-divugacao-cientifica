@@ -1,10 +1,11 @@
 import React from 'react';
 import Colors from "@/src/styles/Colors";
 import { View, Image, Text, StyleSheet, ImageSourcePropType } from "react-native";
+import { Link } from 'expo-router';
 
 type HomeTopicProps = {
   icon: ImageSourcePropType;
-  path: string;
+  path?: string;
   title: string;
   color: string;
 };
@@ -13,7 +14,9 @@ const HomeTopic: React.FC<HomeTopicProps> = ({ icon, path, title, color }) => {
   return (
     <View style={[styles.container, { backgroundColor: color }]}>
       <View style={{ width: "100%", alignItems: "flex-end" }}>
-        <Image source={require('@/assets/images/arrow_right_icon.png')} style={styles.icon} />
+        <Link  href={{pathname: path ? path : ""}}>
+          <Image source={require('@/assets/images/arrow_right_icon.png')} style={styles.icon} />
+        </Link>
       </View>
       <View>
         <Image source={icon} style={styles.topicImage} />

@@ -15,7 +15,7 @@ const HomeTopics = () => {
   const CertificateIcon = require('@/assets/images/certificate_icon.png');
 
   const topics: Topic[] = [
-    { icon: InsightIcon, path: '', title: 'Eventos', color: '#8D24FA' },
+    { icon: InsightIcon, path: 'events', title: 'Eventos', color: '#8D24FA' },
     { icon: LightIcon, path: '', title: 'Hackathon', color: '#14AAFF' },
     { icon: ArticleIcon, path: '', title: 'Artigos', color: '#FFCC19' },
     { icon: CertificateIcon, path: '', title: 'Minicursos', color: '#F5578C' },
@@ -23,7 +23,6 @@ const HomeTopics = () => {
 
   return (
     <View style={styles.HomeTopicContainer}>
-      {/* Mapeamento estático para exibir cada tópico */}
       {topics.map((item) => (
         <HomeTopic
           key={item.title}

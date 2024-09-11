@@ -1,17 +1,18 @@
 import { Link } from "expo-router";
 import { Image, View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
-type SimpleEventPreviewProps = {
+export type SimpleEventPreviewProps = {
     imageUrl: string,
-    title: string
+    title: string,
+    id: string
 }
 
-export default function ({imageUrl, title}: SimpleEventPreviewProps) {
+export default function ({imageUrl, title, id}: SimpleEventPreviewProps) {
     return (
         <TouchableOpacity style={styles.container}>
-            <Link href={"/myevent"}  style={{textAlign: "center"}}>
+            <Link href={{pathname: `/events/${id}`,}}  style={{textAlign: "center"}}>
                 <View>
-                    <Image source={require("@/assets/images/ifpb_logo.jpeg")} style={styles.eventImage}/>
+                    <Image source={{uri: imageUrl}} style={styles.eventImage}/>
                 </View>
                 <Text style={styles.eventPreviewText}>{title}</Text>
             </Link>

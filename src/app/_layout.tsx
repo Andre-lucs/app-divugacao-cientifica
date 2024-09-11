@@ -37,7 +37,7 @@ export default function RootLayout() {
         <Stack.Screen name="register" options={{headerShown: false}} />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="events/[eventId]" options={{headerShown: false}}/>
-        <Stack.Screen name="events/[myEventId]" options={{headerShown: false}}/>
+        <Stack.Screen name="myEvents/[myEventId]" options={{headerShown: false}}/>
         <Stack.Screen name="user/history" options={{headerShown: false}}/>
         <Stack.Screen name="user/myevents" options={{headerShown: false}}/>
         <Stack.Screen name="user/updateProfile" options={{headerShown: false,presentation:"card",contentStyle:{paddingVertical:50, }}}/>

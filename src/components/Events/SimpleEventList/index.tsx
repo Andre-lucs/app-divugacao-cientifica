@@ -5,12 +5,14 @@ type SimpleEventListProps = {
   title: string;
 }
 
+
+
 export default function SimpleEventList({ title }: SimpleEventListProps) {
+
+  const imageTest = require('@/assets/images/ifpb_logo.jpeg')
   const eventData = [
-    { id: '1', title: 'Evento 1', imageUrl: require('@/assets/images/ifpb_logo.jpeg') },
-    { id: '2', title: 'Evento 2', imageUrl: require('@/assets/images/ifpb_logo.jpeg') },
-    { id: '3', title: 'Evento 3', imageUrl: require('@/assets/images/ifpb_logo.jpeg') },
-    { id: '4', title: 'Evento 4', imageUrl: require('@/assets/images/ifpb_logo.jpeg') },
+    { id: '1', title: 'Evento 1', imageUrl: '@/assets/images/ifpb_logo.jpeg' },
+  
   ];
 
   return (
@@ -19,7 +21,7 @@ export default function SimpleEventList({ title }: SimpleEventListProps) {
       <FlatList
         data={eventData}
         renderItem={({ item }) => (
-          <SimpleEventPreview imageUrl={item.imageUrl} title={item.title} />
+          <SimpleEventPreview imageUrl={item.imageUrl} title={item.title} id={item.id} />
         )}
         keyExtractor={(item) => item.id}
         horizontal={true}
