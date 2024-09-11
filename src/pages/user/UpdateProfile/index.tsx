@@ -1,4 +1,4 @@
-import { useRouter } from 'expo-router';
+import { useRouter,Tabs } from 'expo-router';
 import { Pressable, Text, View } from 'react-native';
 
 export default function UpdateProfilePage(){

@@ -49,6 +49,7 @@ export default function () {
         <TouchableOpacity style={styles.item} onPress={()=>{
             if(item.path){
                 router.push(item.path);
+                console.log(item.path)
             }
         }}>
             {item.icon}

@@ -12,17 +12,17 @@ type HomeTopicProps = {
 
 const HomeTopic: React.FC<HomeTopicProps> = ({ icon, path, title, color }) => {
   return (
-    <View style={[styles.container, { backgroundColor: color }]}>
-      <View style={{ width: "100%", alignItems: "flex-end" }}>
-        <Link  href={{pathname: path ? path : ""}}>
-          <Image source={require('@/assets/images/arrow_right_icon.png')} style={styles.icon} />
-        </Link>
+    <Link  href={{pathname: path ? path : ""}} replace>
+      <View style={[styles.container, { backgroundColor: color }]}>
+        <View style={{ width: "100%", alignItems: "flex-end" }}>
+            <Image source={require('@/assets/images/arrow_right_icon.png')} style={styles.icon} />
+        </View>
+        <View>
+          <Image source={icon} style={styles.topicImage} />
+          <Text style={styles.topicTitle}>{title}</Text>
+        </View>
       </View>
-      <View>
-        <Image source={icon} style={styles.topicImage} />
-        <Text style={styles.topicTitle}>{title}</Text>
-      </View>
-    </View>
+    </Link>
   );
 };
 
