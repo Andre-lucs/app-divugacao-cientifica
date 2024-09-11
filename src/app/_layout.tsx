@@ -11,7 +11,7 @@ export default function RootLayout() {
     console.log("RootLayout mounted");
     console.log(path)
     if (path === "/")
-      router.replace("/login");
+      router.replace("/auth/login");
   }, []);
 
   
@@ -30,12 +30,11 @@ export default function RootLayout() {
     <PaperProvider theme={theme}>
       <Stack screenOptions={{
         contentStyle: { backgroundColor: theme.colors.background },
-//        headerShown: false,
+        headerShown: false,
         }}
         >
-        <Stack.Screen name="login" options={{headerShown: false}} />
-        <Stack.Screen name="register" options={{headerShown: false}} />
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="auth" />
+        <Stack.Screen name="(tabs)" />
       </Stack>
     </PaperProvider>
   );
