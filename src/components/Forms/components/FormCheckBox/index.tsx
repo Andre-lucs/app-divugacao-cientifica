@@ -9,11 +9,11 @@ type props = FormInputProps & PropsWithChildren<{
 
 export default function(p:props){
 
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState<boolean>(false);
 
   return(
     <FormCheckBox>
-      <CheckBox value={checked} color={checked ? "#5470FF":''} onValueChange={setChecked}  />
+      <CheckBox value={checked} color={checked ? "#5470FF":''} onValueChange={(v)=>{setChecked(v); if(p.onChange)p.onChange(v)}}  />
       <Text>{p.children}</Text>
     </FormCheckBox>
   )

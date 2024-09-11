@@ -5,14 +5,14 @@ export const BottomTextButton = styled.Text`
   font-weight: bold;
 `;
 
-export const MainLoginView = styled.View`
+export const MainAuthView = styled.View`
   flex: auto;
   align-items: center;
   justify-content: center;
   gap: 60px;
 `;
 
-export const LoginPageView = styled.View`
+export const AuthPageView = styled.View`
   display: flex;
   flex: 1;
   flex-direction: column;

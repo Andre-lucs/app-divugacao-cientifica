@@ -1,15 +1,15 @@
 import { View, Text, Pressable } from "react-native";
 import LoginForm from '../../../components/Forms/LoginForm/index';
-import { BottomTextButton, MainLoginView, LogoImage, BottomTextView,LoginPageView } from "@/src/pages/auth/styles";
+import { BottomTextButton, MainAuthView, LogoImage, BottomTextView,AuthPageView } from "@/src/pages/auth/styles";
 import { Link, router,  } from "expo-router";
 
 export default function LoginPage () {
     return (
-        <LoginPageView>
-            <MainLoginView>
+        <AuthPageView>
+            <MainAuthView>
                 <LogoImage source={require("@/assets/images/logo.png")}/>
-                <LoginForm onSubmit={()=>{router.replace("/")}} forgotPassword={()=>{}}/>
-            </MainLoginView>
+                <LoginForm onSubmit={(_logindata)=>{router.replace("/")}} forgotPassword={()=>{}}/>
+            </MainAuthView>
             
             <BottomTextView>
                 <Text>Não tem uma conta?</Text>               
@@ -17,6 +17,6 @@ export default function LoginPage () {
                     <BottomTextButton>Registrar-se</BottomTextButton>
                 </Link>
             </BottomTextView>
-        </LoginPageView>
+        </AuthPageView>
     )
 }

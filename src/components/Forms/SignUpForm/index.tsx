@@ -6,7 +6,7 @@ type props = {
   onSubmit?: (data: formResponse) => void;
 }
 
-type formResponse = {
+export type formResponse = {
   name: string,
   email: string,
   password: string,
@@ -48,7 +48,7 @@ export default function Index(p: props) {
     education?: string,
     phone?: string,
     date?: string,
-    acceptEmails?: string
+    //acceptEmails?: string
   }>({});
 
   const checkEqualPasswords = () => {
@@ -66,6 +66,7 @@ export default function Index(p: props) {
     // setRes({...res, date:new Date()})
     //teste data valida
     setRes({...res, date:new Date('2000-01-01')})
+    console.log(res)
   }, []);
 
 
