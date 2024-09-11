@@ -1,10 +1,10 @@
 import { View } from "react-native";
-import MyEventPage from "../pages/events/myEvent";
+import EventPage from "@/src//pages/events/event";
 
 export default function () {
     return (
         <View>
-            <MyEventPage/>
+            <EventPage/>
         </View>
     )
 }
