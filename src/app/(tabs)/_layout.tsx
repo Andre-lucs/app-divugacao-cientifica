@@ -4,6 +4,7 @@ import Feather from '@expo/vector-icons/Feather';
 import Colors from "@/src/styles/Colors";
 
 export default function TabLayout(){
+
   return (
     <Tabs screenOptions={{ 
       tabBarShowLabel:true,
@@ -14,8 +15,8 @@ export default function TabLayout(){
       tabBarStyle: {backgroundColor: Colors.primary, height: 66},
       header: (props) => <Header/>,
       }}
-      backBehavior="history"
-      
+      backBehavior="initialRoute"
+      initialRouteName="index"
       >
       <Tabs.Screen 
         name="index" 
