@@ -1,7 +1,6 @@
 import RowDetail from "@/src/components/RowDetail";
 import { EventAdditionalInfo, EventAdditionalInfoLabel, EventImage, EventInfo, EventName, EventPageContainer, EventPageDates, EventPageDateText, EventPageTitle } from "..";
-import { MinicoursePreview, MinicourseSection } from "@/src/components/Minicourses/styles";
-import Minicourse from "@/src/components/Minicourses/Minicourse";
+import MinicourseSection  from "@/src/components/Minicourses/MinicourseSection";
 
 
 export default  function EventPage () {
@@ -35,6 +34,7 @@ export default  function EventPage () {
                 <RowDetail/>
             </EventInfo>
             <MinicourseSection/>
+            
         </EventPageContainer>
     )
 }
