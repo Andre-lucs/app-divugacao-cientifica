@@ -3,20 +3,9 @@ import { useEffect, useState } from "react";
 import { date, z } from 'zod';
 
 type props = {
-  onSubmit?: (data: formResponse) => void;
+  onSubmit?: (data: FormResponse) => void;
 }
 
-export type formResponse = {
-  name: string,
-  email: string,
-  password: string,
-  confirmPassword: string,
-  address: string,
-  education: string,
-  phone: string,
-  date: Date,
-  acceptEmails: boolean
-}
 const stepOneSchema = z.object({
   name: z.string().min(3, "Nome deve ter no mínimo 3 caracteres"),
   email: z.string().email("Insira um email válido"),
@@ -34,22 +23,15 @@ const stepTwoSchema = z.object({
       const fifteenYearsAgo = new Date(currentDate.setFullYear(currentDate.getFullYear() - 15));
       return inputDate <= fifteenYearsAgo;
   }, { message: "Data de nascimento inválida" }),
+  acceptEmails: z.boolean().default(false),
 });
 
+type FormResponse = z.infer<typeof stepOneSchema> & z.infer<typeof stepTwoSchema>;
+type ErrorMessagetype = Record<keyof FormResponse, string>;
 
 export default function Index(p: props) {
-  const [res, setRes] = useState<formResponse>({} as formResponse);
-  const [errors, setErrors] = useState<{ 
-    name?: string,
-    email?: string,
-    password?: string,
-    confirmPassword?: string,
-    address?: string,
-    education?: string,
-    phone?: string,
-    date?: string,
-    //acceptEmails?: string
-  }>({});
+  const [res, setRes] = useState<FormResponse>({acceptEmails:false} as FormResponse);
+  const [errors, setErrors] = useState<ErrorMessagetype>({} as ErrorMessagetype);
 
   const checkEqualPasswords = () => {
     if (res.password === res.confirmPassword) {
@@ -61,7 +43,6 @@ export default function Index(p: props) {
   }
 
   useEffect(() => {
-    setRes({...res, acceptEmails:true})
     //teste data invalida
     // setRes({...res, date:new Date()})
     //teste data valida
@@ -70,7 +51,7 @@ export default function Index(p: props) {
   }, []);
 
 
-  const handleChange = (field: keyof formResponse) => (value: string) => {
+  const handleChange = (field: keyof FormResponse) => (value: string) => {
     setRes(prevRes => ({ ...prevRes, [field]: value }));
   };
 

@@ -9,6 +9,7 @@ const LoginSchema = z.object({
 }).required();
 
 type LoginData = z.infer<typeof LoginSchema>;
+type ErrorMessagetype = Record<keyof LoginData, string>;
 
 type props = {
   onSubmit: (data: LoginData) => void;
@@ -18,24 +19,31 @@ type props = {
 export default function LoginForm(p: props) {
 
   const [loginState, setLoginState] = useState<LoginData>({email:'', password:''} as LoginData);
-  const [errors, setErrors] = useState<LoginData>({}as LoginData);
+  const [errors, setErrors] = useState<ErrorMessagetype>({} as ErrorMessagetype);
 
-  function authenticate() {return true;}
+    /**
+   * This function is a placeholder for the authentication logic.
+   * 
+   * Currently, it always returns true, indicating that authentication is successful.
+   * 
+   * To implement proper authentication, you need to:
+   * 1. Validate the user's credentials (e.g., email and password).
+   * 2. Check the credentials against a database or authentication service.
+   * 3. Return true if the credentials are valid, otherwise return false.
+   * 4. Store the user's authentication state in a Context.
+   */
+  function authenticate() {
+    return true;
+  }
 
   const handleSubmit = () => {
-    if(!BaseForm.validateStep(loginState, LoginSchema, setErrors)) return;
     if(!authenticate()) return;
     p.onSubmit(loginState);
   };
 
-  const stepCheck = () => {
-    return BaseForm.validateStep(loginState, LoginSchema, setErrors);
-  }
-
-
   return (
   <LoginFormView>
-    <BaseForm onSubmit={handleSubmit} checkBeforeNext={stepCheck} doneButton="Entrar" schemes={[LoginSchema]} dataState={loginState} setErrors={setErrors}>
+    <BaseForm onSubmit={handleSubmit} doneButton="Entrar" schemes={[LoginSchema]} dataState={loginState} setErrors={setErrors}>
       <BaseForm.Step>
          <FormTextInput value={loginState.email} onChangeText={(v)=>setLoginState({...loginState, email:v})} required key="email" label="Email" placeholder="Insira seu Email" error={errors.email} />
          <FormTextInput value={loginState.password} onChangeText={(v)=>setLoginState({...loginState, password:v})} required key="password" label="Senha" isPassword placeholder="Insira sua Senha" error={errors.password} />
