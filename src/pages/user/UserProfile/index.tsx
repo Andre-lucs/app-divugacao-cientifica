@@ -1,4 +1,4 @@
-import { Alert, Button, Text, View, TextInput, Image, StyleSheet } from "react-native";
+import { Text, View, Image, StyleSheet } from "react-native";
 import { useState } from "react";
 import Feather from '@expo/vector-icons/Feather';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
@@ -9,17 +9,15 @@ import UserNavigation from "@/src/components/User/UserNavigation";
 export default function() {
   const [date, setDate] = useState(new Date())
 
-
   return (
     <View
       style={{
         flex: 1,
-        justifyContent: "flex-start",
-        alignItems: "center",
         flexGrow:1,
         flexDirection:"column",
         width:'100%',
-     
+        justifyContent: "flex-start",
+        alignItems: "center",
       }}
     >
       <View style={styles.userInfoProfileContainer}>
