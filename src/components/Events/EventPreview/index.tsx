@@ -9,16 +9,17 @@ type Props = PropsWithChildren<{
     startDate: string;
     category: string;
     imageUrl: string;
+    path: string;
 }>
 
-export default function({ category, name, startDate, imageUrl, id }: Props) {
+export default function({ category, name, startDate, imageUrl, id, path }: Props) {
     return (
         <EventPreview >
             <EventImagePreview source={{ uri: imageUrl }} />
             <EventPreviewInfo>
                 <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
                     <EventNamePreview><Text>{name}</Text></EventNamePreview>
-                    <Link href={{pathname: "events/[eventId]", params: {id: id }}}>
+                    <Link href={{pathname: path, params: {id: id }}}>
                         <ArrowIcon source={require('@/assets/images/arrow_icon.png')}/>
                     </Link>
                 </View>

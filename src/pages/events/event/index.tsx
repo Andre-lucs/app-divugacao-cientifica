@@ -2,6 +2,7 @@ import RowDetail from "@/src/components/RowDetail";
 import { EventAdditionalInfo, EventAdditionalInfoLabel, EventImage, EventInfo, EventName, EventPageContainer, EventPageDates, EventPageDateText, EventPageTitle } from "..";
 import MinicourseSection  from "@/src/components/Minicourses/MinicourseSection";
 import StackHeader from "@/src/components/StackHeader";
+import Map from "@/src/components/Map";
 
 
 export default  function EventPage () {
@@ -36,6 +37,8 @@ export default  function EventPage () {
                 <RowDetail/>
             </EventInfo>
             <MinicourseSection/>
+            <EventPageTitle>Localização:</EventPageTitle>
+            <Map/>
             
         </EventPageContainer>
     )

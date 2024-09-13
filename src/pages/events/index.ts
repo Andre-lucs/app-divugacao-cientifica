@@ -6,6 +6,7 @@ import styled from "styled-components/native";
 export const EventPageContainer = styled.ScrollView`
     padding: 20px;
     padding-bottom: 100px;
+    min-height: auto;
 
 `
 
@@ -51,10 +52,10 @@ export const EventAdditionalInfo = styled.Text`
      font-weight: 400;
 `;
 
-export const ButtonEvent = styled(TouchableOpacity)<{ color?: string }>`
+export const ButtonEvent = styled(TouchableOpacity)<{ color?: string, width?: number }>`
     background-color: ${props => props.color || Colors.secondary};
     height: 40px;
-    width: 116px;
+    width: ${props => props.width ? `${props.width}px` : '116px'};
     padding: 10px;
     border-radius: 5px;
     justify-content: center;
@@ -85,13 +86,7 @@ export const ContainerPageEvents = styled.View`
   width: 100%;
 `;
 
-export const HeaderPageEvents = styled.View`
-  width: 100%;
-  padding: 10px;
-  gap: 20px;
-`;
-
-export const TitlePageEvents = styled.Text`
-  font-size: 28px;
-  font-weight: 600;
+export const SearchInputContainer = styled.View`
+    width: 100%;
+    padding: 10px;
 `;
