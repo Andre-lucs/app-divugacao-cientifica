@@ -6,12 +6,12 @@ export default function () {
     return (
         <MinicourseSection>
             <EventPageTitle>Requisições de Minicurso:</EventPageTitle>
-            <Minicourse subject="Interfaces com React" date="09/09/2024"/>
-            <Minicourse subject="Interfaces com React" date="09/09/2024"/>
-            <Minicourse subject="Interfaces com React" date="09/09/2024"/>
-            <Minicourse subject="Interfaces com React" date="09/09/2024"/>
-            <Minicourse subject="Interfaces com React" date="09/09/2024"/>
-            <Minicourse subject="Interfaces com React" date="09/09/2024"/>
+            <Minicourse subject="Interfaces com React" date="09/09/2024" username="Diogo"/>
+            <Minicourse subject="Interfaces com React" date="09/09/2024" username="Diogo"/>
+            <Minicourse subject="Interfaces com React" date="09/09/2024" username="Diogo"/>
+            <Minicourse subject="Interfaces com React" date="09/09/2024" username="Diogo"/>
+            <Minicourse subject="Interfaces com React" date="09/09/2024" username="Diogo"/>
+            <Minicourse subject="Interfaces com React" date="09/09/2024" username="Diogo"/>
         </MinicourseSection>
     )
 }

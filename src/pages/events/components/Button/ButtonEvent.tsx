@@ -3,11 +3,12 @@ import { ButtonEvent, ButtonEventText } from '../..';
 type ButtonProps = {
     title: string;
     color?: string;
+    width?: number
 };
 
-const ButtonEventComponent = ({ title, color }: ButtonProps) => {
+const ButtonEventComponent = ({ title, color, width }: ButtonProps) => {
     return (
-        <ButtonEvent color={color}>
+        <ButtonEvent color={color} width={width}>
             <ButtonEventText>{title}</ButtonEventText>
         </ButtonEvent>
     );

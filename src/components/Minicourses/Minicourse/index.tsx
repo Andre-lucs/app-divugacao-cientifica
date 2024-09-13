@@ -30,11 +30,11 @@ export default function ({subject, date, username}: TMinicourse) {
                 <MinicourseInfoPreview>
                     <Text><MinicoursePreviewLabel>Tema: </MinicoursePreviewLabel>{subject}</Text>
                     <Text><MinicoursePreviewLabel>Data: </MinicoursePreviewLabel>{date}</Text>
-                    <Text><MinicoursePreviewLabel>Promovedor: </MinicoursePreviewLabel>{username}</Text>
                 </MinicourseInfoPreview>
                 <MinicoursePreviewActions>
-                    <ButtonEvent title="Increver-se" />
-                    <ButtonEvent title="Rejeitar" color={`${Colors.red}`}/>
+                    <Text><MinicoursePreviewLabel>Promovedor: </MinicoursePreviewLabel>{username}</Text>
+                    <ButtonEvent title="Aprovar"  width={80}/>
+                    <ButtonEvent title="Rejeitar" color={`${Colors.red}`} width={80}/>
                 </MinicoursePreviewActions>
             </MinicoursePreview>
         )
