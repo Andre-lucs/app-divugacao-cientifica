@@ -1,12 +1,14 @@
 import { Text, View, Image, StyleSheet } from "react-native";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Feather from '@expo/vector-icons/Feather';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import Colors from "@/src/styles/Colors";
 import UserNavigation from "@/src/components/User/UserNavigation";
+import { AuthContext } from "@/src/app/_layout";
 
 
 export default function() {
+  const authContext = useContext(AuthContext);
   const [date, setDate] = useState(new Date())
 
   return (
@@ -24,7 +26,7 @@ export default function() {
         <View style={styles.userInfo}>
           <Image source={require('@/assets/images/user_photo_profile.png')}/>
           <View>
-            <Text style={styles.userName}>Julia Soares</Text>
+            <Text style={styles.userName}>{authContext?.username}</Text>
             <Text>Estudante</Text>
           </View>
         </View>
