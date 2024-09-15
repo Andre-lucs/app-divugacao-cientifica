@@ -1,7 +1,7 @@
 import React, { PropsWithChildren, ReactElement, useEffect, useState,forwardRef,useImperativeHandle, ForwardRefExoticComponent } from "react";
 import { FormBody,Form } from '@/src/components/Forms/styles';
 import FormButton from "../FormButton";
-import { Alert } from "react-native";
+import { Alert, StyleProp, ViewStyle } from "react-native";
 import {ZodObject, z} from 'zod';
 
 export function validate(data: any, schema: ZodObject<any>, setErrors: Function){
@@ -22,9 +22,13 @@ export function validate(data: any, schema: ZodObject<any>, setErrors: Function)
   }
 }
 
-export const FormStep = (props:PropsWithChildren) => {
+type formStepProps = {
+  style?: StyleProp<ViewStyle>;
+} & PropsWithChildren;
+
+export const FormStep = (props:formStepProps) => {
   return (
-    <FormBody>
+    <FormBody style={props.style}>
       {props.children}
     </FormBody>
   );

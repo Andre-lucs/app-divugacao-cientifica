@@ -3,6 +3,7 @@ import { useState } from "react";
 import { z } from 'zod';
 import FormMapInput from "./components/FormMapInput";
 import { LatLng } from "react-native-maps";
+import FormImageInput from "./components/FormImageInput";
 
 const MAX_FILE_SIZE = 10000000;
 const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/jpg", "image/png", "image/webp"];
@@ -19,13 +20,7 @@ const stepOneSchema = z.object({
   committee: z.string().min(3, "Comitê deve ter no mínimo 3 caracteres"),
   startDate: z.date().default(() => new Date()),
   endDate: z.date().default(() => new Date()),
-  image: z
-    .any()
-    .refine((file) => file?.size <= MAX_FILE_SIZE, `Tamanho maximo de images é 10MB.`)
-    .refine(
-      (file) => ACCEPTED_IMAGE_TYPES.includes(file?.type),
-      "Apenas images dos formatos .jpg, .jpeg, .png and .webp são suportados."
-    ),
+  image: z.string(),
   location: z.object({
     latitude: z.number(),
     longitude: z.number(),
@@ -51,7 +46,7 @@ export default function (p: props) {
     dataState={res}
     setErrors={setErrors}
     backButton={null} doneButton="Cadastrar" nextButton="Próximo">
-      <FormStep>
+      <FormStep style={{gap: 5}}>
         <FormTextInput
           onChangeText={handleChange('name')}
           placeholder="Insira seu nome"
@@ -106,6 +101,14 @@ export default function (p: props) {
           error={errors.endDate}
           onChangeDate={handleChange('endDate')}
           required
+        />
+        <FormImageInput
+        label="Imagem:"
+        key="image"
+        onChange={handleChange('image')}
+        value={res.image}
+        error={errors.image}
+        required
         />
         <FormMapInput 
         label="Localização:"
