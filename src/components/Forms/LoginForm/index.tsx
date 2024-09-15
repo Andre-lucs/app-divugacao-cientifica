@@ -8,7 +8,7 @@ const LoginSchema = z.object({
   password: z.string().min(6, "A senha deve ter no mínimo 6 caracteres"),
 }).required();
 
-type LoginData = z.infer<typeof LoginSchema>;
+export type LoginData = z.infer<typeof LoginSchema>;
 type ErrorMessagetype = Record<keyof LoginData, string>;
 
 type props = {

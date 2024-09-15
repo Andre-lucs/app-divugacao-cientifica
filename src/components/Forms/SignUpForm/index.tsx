@@ -143,3 +143,6 @@ export default function Index(p: props) {
     </BaseForm>
   );
 }
+
+
+export {FormResponse as SignUpFormResponse}
