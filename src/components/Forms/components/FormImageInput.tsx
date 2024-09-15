@@ -1,7 +1,7 @@
-import * as ImagePicker from 'expo-image-picker';
 import { FormInputProps } from "../types";
-import { Pressable, Text, Image, ImageBackground } from 'react-native';
+import { Pressable, Text, ImageBackground } from 'react-native';
 import { FormInputLabel } from '../styles';
+import { pickImage } from '@/src/services/imagePicker';
 
 type props = FormInputProps & {
   label?: string;
@@ -11,24 +11,14 @@ type props = FormInputProps & {
 export default function(p:props){
 
   function openImagePicker(){
-    ImagePicker.requestMediaLibraryPermissionsAsync().then(({status})=>{
-      if(status === 'granted'){
-        ImagePicker.launchImageLibraryAsync({
-          mediaTypes: ImagePicker.MediaTypeOptions.Images,
-          allowsEditing: true,
-          aspect: [1,1],
-          quality: 1,
-        })
-        .then((result)=>{
-          if(!result.canceled){
-            p.onChange && p.onChange(result.assets[0].uri);
-          }
-        })
-          
-          
-      };
-      }
-    )};
+      pickImage()
+      .then((result)=>{
+        if(result){
+          p.onChange && p.onChange(result[0].uri);
+        }
+      })
+      .catch((e)=>console.log(e));
+    };
 
   return (
     <>
