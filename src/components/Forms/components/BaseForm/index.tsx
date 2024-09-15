@@ -54,8 +54,7 @@ export function BaseForm(p:props){
     //   let currStepKeys = Object.keys(scheme.shape);
     //   keys.push(...currStepKeys);
     // });
-    // console.log(keys);
-  },[p.children])
+  },[])
 
   const validateStep = () => {
     console.log(p.dataState)
