@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { BaseForm, DiscreteButton, FormCheckBox, FormTextInput } from "@/src/components/Forms/components";
-import { Form } from "../styles";
+import { Form } from "./styles";
 import { z } from 'zod';
 
 const UpdateProfileSchema = z.object({

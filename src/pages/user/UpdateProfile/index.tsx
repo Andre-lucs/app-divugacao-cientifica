@@ -1,6 +1,7 @@
 import { useRouter, useNavigation } from 'expo-router';
 import { Pressable, Text, View } from 'react-native';
 import UpdateProfileForm, { UpdateProfileData } from '@/src/components/Forms/UpdateProfileForm';
+import StackHeader from '@/src/components/StackHeader';
 
 export default function UpdateProfilePage(){
 
@@ -22,9 +23,7 @@ export default function UpdateProfilePage(){
   const navigation = useNavigation();
     return (
         <View>
-          <Pressable onPress={()=>{ router.dismissAll()}}>
-            <Text>UpdateProfilePage</Text>
-          </Pressable>
+          <StackHeader title="Atualizar Perfil" />
           <UpdateProfileForm onSubmit={onSubmit}/>
         </View>
     );
