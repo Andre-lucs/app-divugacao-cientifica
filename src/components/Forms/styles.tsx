@@ -59,6 +59,11 @@ export const TextInputErrorLabel = styled.Text`
   font-size: 15px;
   font-weight: normal;
   color: ${()=> useTheme().colors.error};
+  `;
+
+export const FormInputLabel = styled.Text`
+  font-size: 15px;
+  color: #D9D9D9;
 `;
 
 export const FormDateInput = styled.View`
@@ -73,11 +78,6 @@ export const FormDateInput = styled.View`
   max-height: 48px;
   display: flex;
   flex-grow: 1;
-`;
-
-export const FormDateInputText = styled.Text`
-  font-size: 15px;
-  color: #D9D9D9;
 `;
 
 export const FormDatePressable = styled.Pressable`

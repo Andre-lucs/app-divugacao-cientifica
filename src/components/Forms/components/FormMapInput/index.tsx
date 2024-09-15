@@ -2,7 +2,8 @@ import MapView, { ClickEvent, LatLng, Marker, Region } from "react-native-maps";
 import * as Location from "expo-location";
 import { useEffect, useState } from "react";
 import { FormInputProps } from '../../types';
-import { TextInputErrorLabel } from "../../styles";
+import { TextInputErrorLabel ,FormInputLabel} from "../../styles";
+import { getCurrentDeviceCorrdinates } from "@/src/services/location";
 
 type props = FormInputProps & {
   label?: string;
@@ -15,14 +16,8 @@ export default function (p : props){
   const [errorMsg, setErrorMsg] = useState('');
 
   useEffect(() => {
-      (async () => {
-        let { status } = await Location.requestForegroundPermissionsAsync();
-        if (status !== 'granted') {
-          setErrorMsg('Permission to access location was denied');
-          return;
-        }
-  
-        let locationObj = await Location.getCurrentPositionAsync({});
+      (async()=>{
+        let locationObj = await getCurrentDeviceCorrdinates();
         setLocation(locationObj.coords);
         setRegionHandler({...locationObj.coords, latitudeDelta: 0.00922, longitudeDelta: 0.00421});
       })().catch(e => setErrorMsg('Error getting location'));
@@ -41,10 +36,12 @@ export default function (p : props){
 
   return (
     <>
+    {p.label && <FormInputLabel style={{color:'#52525C'}}>{p.label}</FormInputLabel>}
       <MapView 
         style={{width:'100%', height:180,flex:1, borderRadius:5}} 
         region={region||undefined}
         onRegionChangeComplete={setRegionHandler}
+        //onRegionChange={setRegionHandler}
         onLongPress={handleDoublePress}
       >
         

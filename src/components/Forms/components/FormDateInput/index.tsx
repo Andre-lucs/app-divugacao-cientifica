@@ -1,5 +1,5 @@
 import { FormInputProps } from "../../types";
-import { FormDateInput, FormDateInputText, FormDatePressable, TextInputErrorLabel } from "@/src/components/Forms/styles";
+import { FormDateInput, FormDatePressable, FormInputLabel, TextInputErrorLabel } from "@/src/components/Forms/styles";
 import Ionicons from '@expo/vector-icons/Ionicons';
 import DatePicker, { DateTimePickerEvent } from '@react-native-community/datetimepicker'
 import { useState } from "react";
@@ -22,13 +22,13 @@ export default function(p:props){
   return (
   <FormDatePressable onPress={()=>setShow(true)}>
     {show && <DatePicker value={p.value || new Date()} onChange={onChangeDate}/>}
-    {p.label && <FormDateInputText style={{color:'#52525C'}}>{p.label}</FormDateInputText>}
+    {p.label && <FormInputLabel style={{color:'#52525C'}}>{p.label}</FormInputLabel>}
     <FormDateInput>
       <Ionicons name="calendar-number-outline" size={24} color="#7A7A7A" />
       
-      <FormDateInputText>
+      <FormInputLabel>
         {p.value instanceof Date && p.value.toLocaleDateString() || "Insira a data"}
-      </FormDateInputText>
+      </FormInputLabel>
     </FormDateInput>
     {p.error && <TextInputErrorLabel>{p.error}</TextInputErrorLabel>}
   </FormDatePressable>

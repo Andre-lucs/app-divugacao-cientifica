@@ -108,7 +108,7 @@ export default function (p: props) {
           required
         />
         <FormMapInput 
-        label="Localização"
+        label="Localização:"
         key="location"
         value={res.location}
         onChange={handleChange('location')}
