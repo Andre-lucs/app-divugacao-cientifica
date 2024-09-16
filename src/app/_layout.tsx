@@ -3,6 +3,7 @@ import { createContext, useEffect, useState } from "react";
 import { PaperProvider, MD3LightTheme as DefaultTheme } from 'react-native-paper';
 import Colors from "@/src/styles/Colors";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { EventProvider } from "../contexts/EventContext";
 
 interface AuthContextType {
   isSignedIn: boolean;
@@ -57,12 +58,14 @@ export default function RootLayout() {
         {
           isSignedIn 
           ? (
+            <EventProvider>
             <Stack screenOptions={{
             contentStyle: { backgroundColor: theme.colors.background },
             headerShown: false,
             }}>
                <Stack.Screen name="(tabs)" />
             </Stack>
+            </EventProvider>
           )
           : (
             <Stack screenOptions={{

@@ -1,5 +1,5 @@
 import { View } from "react-native";
-import EventPage from "@/src//pages/events/event";
+import EventPage from "@/src/pages/events/EventPage";
 import { useLocalSearchParams, useRouter } from "expo-router";
 
 export default function () {

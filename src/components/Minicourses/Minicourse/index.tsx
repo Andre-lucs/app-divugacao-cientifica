@@ -2,7 +2,7 @@ import {Text} from "react-native";
 import { Label, MinicourseInfoPreview, MinicoursePreview, MinicoursePreviewActions, MinicoursePreviewLabel } from "@/src/components/Minicourses/styles";
 
 import Colors from "@/src/styles/Colors";
-import ButtonEvent from "@/src/pages/events/components/Button/ButtonEvent";
+import ButtonEvent from "@/src/components/Events/Button/ButtonEvent";
 
 type TMinicourse = {
     subject: string,

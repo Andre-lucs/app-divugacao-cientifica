@@ -5,7 +5,7 @@ export default function Index(){
     <Stack screenOptions={{headerShown:false}}>
       <Stack.Screen name="index"/>
       <Stack.Screen name="[eventId]"/>
-      <Stack.Screen name="myEvents/[myEventId]"/>
+      <Stack.Screen name="userEvent/[eventId]"/>
       <Stack.Screen name="newEvent"/>
     </Stack>
   )

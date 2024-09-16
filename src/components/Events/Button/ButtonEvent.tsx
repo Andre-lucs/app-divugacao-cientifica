@@ -1,4 +1,4 @@
-import { ButtonEvent, ButtonEventText } from '../..';
+import { ButtonEvent, ButtonEventText } from '../../../pages/events';
 
 type ButtonProps = {
     title: string;

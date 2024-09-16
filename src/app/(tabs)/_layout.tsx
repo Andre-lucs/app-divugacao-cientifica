@@ -2,8 +2,16 @@ import { Tabs } from "expo-router";
 import Header from "@/src/components/Header";
 import Feather from '@expo/vector-icons/Feather';
 import Colors from "@/src/styles/Colors";
+import { useContext, useEffect } from "react";
+import { EventContext, EventContextType } from "@/src/contexts/EventContext";
 
 export default function TabLayout(){
+
+  const {getEvents,events} = useContext(EventContext) as EventContextType;
+
+  useEffect(() => {
+    getEvents();
+  }, [])
 
   return (
     <Tabs screenOptions={{ 

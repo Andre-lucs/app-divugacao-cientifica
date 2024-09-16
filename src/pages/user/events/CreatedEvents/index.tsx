@@ -3,7 +3,7 @@ import SearchInput from "@/src/components/SearchInput";
 import EventPreview from "@/src/components/Events/EventPreview";
 import { ContainerPageEvents, SearchInputContainer } from "@/src/pages/events/index";
 import StackHeader from "@/src/components/StackHeader";
-import ButtonCreateEvent from "../components/Button/ButtonCreateEvent";
+import ButtonCreateEvent from "../../../../components/Events/Button/ButtonCreateEvent";
 
 
 

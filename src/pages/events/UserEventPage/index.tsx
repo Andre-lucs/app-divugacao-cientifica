@@ -1,6 +1,6 @@
 import RowDetail from "@/src/components/RowDetail";
 import { EventAdditionalInfo, EventAdditionalInfoLabel, EventImage, EventInfo, EventName, EventPageActions, EventPageContainer, EventPageDates, EventPageDateText, EventPageTitle } from "..";
-import ButtonEvent from "@/src/pages/events/components/Button/ButtonEvent";
+import ButtonEvent from "@/src/components/Events/Button/ButtonEvent";
 import Colors from "@/src/styles/Colors";
 import MinicourseRequestsSection from "@/src/components/Minicourses/MinicourseRequestsSection";
 import Map from "@/src/components/Map";

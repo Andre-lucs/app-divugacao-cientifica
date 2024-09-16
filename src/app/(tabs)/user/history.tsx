@@ -1,4 +1,4 @@
-import History from "@/src/pages/events/history";
+import History from "@/src/pages/user/events/History";
 
 export default function Login(){
   return (

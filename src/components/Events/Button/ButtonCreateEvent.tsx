@@ -15,11 +15,11 @@ export default function (){
   justify-content: center;
   width: 95%;
   border-radius: 5px;
-  margin: 50px auto;
+  margin: 20px auto;
 `;
 
   function gotoCreateEvent(){
-    Router.navigate("events/newEvent");
+    Router.navigate("/(tabs)/events/newEvent");
   }
   return <CreateBtn onPress={gotoCreateEvent} ><Text style={{color:'white'}}>Criar</Text></CreateBtn>
 }
