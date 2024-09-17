@@ -1,19 +1,20 @@
+import { RegisterFormResponse } from "@/@types/authTypes";
 import { FormTextInput, BaseForm, FormStep, FormDateInput, FormCheckBox } from "@/src/components/Forms/components"
 import { useEffect, useState } from "react";
 import { date, z } from 'zod';
 
 type props = {
-  onSubmit?: (data: FormResponse) => void;
+  onSubmit?: (data: RegisterFormResponse) => void;
 }
 
-const stepOneSchema = z.object({
+export const RegisterFormStepOneSchema = z.object({
   name: z.string().min(3, "Nome deve ter no mínimo 3 caracteres"),
   email: z.string().email("Insira um email válido"),
   password: z.string().min(6, "A senha deve ter no mínimo 6 caracteres"),
   confirmPassword: z.string().min(6, "A senha deve ter no mínimo 6 caracteres"),
 }).required();
 
-const stepTwoSchema = z.object({
+export const RegisterFormStepTwoSchema = z.object({
   address: z.string().min(3, "Endereço deve ter no mínimo 3 caracteres"),
   education: z.string().min(3, "Escolaridade deve ter no mínimo 3 caracteres"),
   phone: z.string().min(8, "Telefone deve ter no mínimo 8 caracteres"),
@@ -26,11 +27,10 @@ const stepTwoSchema = z.object({
   acceptEmails: z.boolean().default(false),
 });
 
-type FormResponse = z.infer<typeof stepOneSchema> & z.infer<typeof stepTwoSchema>;
-type ErrorMessagetype = Record<keyof FormResponse, string>;
+type ErrorMessagetype = Record<keyof RegisterFormResponse, string>;
 
 export default function Index(p: props) {
-  const [res, setRes] = useState<FormResponse>({acceptEmails:false} as FormResponse);
+  const [res, setRes] = useState<RegisterFormResponse>({acceptEmails:false} as RegisterFormResponse);
   const [errors, setErrors] = useState<ErrorMessagetype>({} as ErrorMessagetype);
 
   const checkEqualPasswords = () => {
@@ -51,14 +51,14 @@ export default function Index(p: props) {
   }, []);
 
 
-  const handleChange = (field: keyof FormResponse) => (value: string) => {
+  const handleChange = (field: keyof RegisterFormResponse) => (value: string) => {
     setRes(prevRes => ({ ...prevRes, [field]: value }));
   };
 
   return (
     <BaseForm 
     onSubmit={() => p.onSubmit ? p.onSubmit(res) : undefined} 
-    schemes={[stepOneSchema, stepTwoSchema]}
+    schemes={[RegisterFormStepOneSchema, RegisterFormStepTwoSchema]}
     dataState={res}
     setErrors={setErrors}
     checkBeforeNext={checkEqualPasswords}
@@ -143,6 +143,3 @@ export default function Index(p: props) {
     </BaseForm>
   );
 }
-
-
-export {FormResponse as SignUpFormResponse}

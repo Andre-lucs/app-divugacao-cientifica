@@ -1,6 +1,6 @@
 import LoginForm from "./LoginForm";
-import SignUpForm from "./SignUpForm";
+import RegisterForm from "./RegisterForm";
 import UpdateProfileForm from "./UpdateProfileForm";
 import EventCreateForm from "./EventCreateForm";
 
-export {LoginForm, SignUpForm, UpdateProfileForm, EventCreateForm};
+export {LoginForm, RegisterForm, UpdateProfileForm, EventCreateForm};

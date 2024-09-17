@@ -1,30 +1,29 @@
-import { View, Text, Pressable } from "react-native";
+import { Text, Alert } from "react-native";
 import { BottomTextButton, MainAuthView, LogoImage, BottomTextView,AuthPageView } from "@/src/pages/auth/styles";
 import { Link, router } from "expo-router";
-import { SignUpForm } from "@/src/components/Forms";
+import { RegisterForm } from "@/src/components/Forms";
 import { useContext } from "react";
-import { AuthContext } from "@/src/app/_layout";
-import { register, signIn } from "@/src/services/auth";
+import { AuthContext } from "@/src/contexts/AuthContext";
+import * as Auth from "@/src/services/auth";
+import { RegisterFormResponse } from "@/@types/authTypes";
 
 export default function RegisterPage () {
     const authContext = useContext(AuthContext);
 
-
-    function onSubmit(_registerData: any){
-        register(_registerData).then((data)=>{
-            authContext?.setAuthToken(data.token);
-            authContext?.setUsername(data.name);
-            authContext?.setEmail(data.email);
-            authContext?.setIsSignedIn(true);
+    function onSubmit(_registerData: RegisterFormResponse){
+        Auth.register(_registerData).then((data)=>{
+            authContext.setAuthData(data);
             router.replace("/");
-        })
+        }).catch((error:Error)=>{
+            Alert.alert("Erro :", error.message, [{text:"Ok"}]);
+        });
     }
 
     return (
         <AuthPageView>
             <MainAuthView>
                 <LogoImage source={require("@/assets/images/logo.png")}/>
-                <SignUpForm onSubmit={onSubmit} />
+                <RegisterForm onSubmit={onSubmit} />
             </MainAuthView>
             
             <BottomTextView>

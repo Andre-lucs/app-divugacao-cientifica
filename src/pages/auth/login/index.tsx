@@ -1,30 +1,30 @@
-import { View, Text, Pressable } from "react-native";
-import LoginForm, { LoginData } from  "@/src/components/Forms/LoginForm/index";
+import { Alert, Text } from "react-native";
+import LoginForm from  "@/src/components/Forms/LoginForm/index";
 import { BottomTextButton, MainAuthView, LogoImage, BottomTextView,AuthPageView } from "@/src/pages/auth/styles";
 import { Link, router,  } from "expo-router";
-import {signIn} from "@/src/services/auth";
+import * as Auth from "@/src/services/auth";
 import { useContext } from "react";
-import { AuthContext } from "@/src/app/_layout";
+import { AuthContext } from "@/src/contexts/AuthContext";
+import { LoginData } from "@/@types/authTypes";
 
 export default function LoginPage () {
 
     const authContext = useContext(AuthContext);
 
-    function logIn(_logindata: LoginData){
-        signIn(_logindata).then((data)=>{
-            authContext?.setAuthToken(data.token);
-            authContext?.setUsername(data.name);
-            authContext?.setEmail(data.email);
-            authContext?.setIsSignedIn(true);
+    function signIn(_logindata: LoginData){
+        Auth.signIn(_logindata).then((data)=>{
+            authContext.setAuthData(data);
             router.replace("/");
-        })
+        }).catch((error:Error)=>{
+            Alert.alert("Erro :", error.message, [{text:"Ok"}]);
+        });
     }
 
     return (
         <AuthPageView>
             <MainAuthView>
                 <LogoImage source={require("@/assets/images/logo.png")}/>
-                <LoginForm onSubmit={logIn} forgotPassword={()=>{}}/>
+                <LoginForm onSubmit={signIn} forgotPassword={()=>{}}/>
             </MainAuthView>
             
             <BottomTextView>

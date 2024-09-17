@@ -21,8 +21,8 @@ export default function TabLayout(){
       tabBarInactiveTintColor: 'white',
       tabBarItemStyle: {height: 66, paddingBottom: 5},
       tabBarStyle: {backgroundColor: Colors.primary, height: 66},
-      header: (props) => <Header/>,
-      }}
+      header: (props) => <Header/>,  
+    }}
       backBehavior="initialRoute"
       initialRouteName="index"
       >

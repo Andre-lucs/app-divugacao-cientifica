@@ -1,36 +1,20 @@
 import { router, Stack, usePathname } from "expo-router";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { PaperProvider, MD3LightTheme as DefaultTheme } from 'react-native-paper';
 import Colors from "@/src/styles/Colors";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { EventProvider } from "../contexts/EventContext";
-
-interface AuthContextType {
-  isSignedIn: boolean;
-  setIsSignedIn: React.Dispatch<React.SetStateAction<boolean>>;
-  username: string;
-  setUsername: React.Dispatch<React.SetStateAction<string>>;
-  authToken: string;
-  setAuthToken: React.Dispatch<React.SetStateAction<string>>;
-  email: string;
-  setEmail: React.Dispatch<React.SetStateAction<string>>;
-}
-
-export const AuthContext = createContext<AuthContextType | null>(null);
-
+import { EventProvider } from "@/src/contexts/EventContext";
+import { AuthContext, AuthProvider } from "@/src/contexts/AuthContext";
 export default function RootLayout() {
-  const [isSignedIn, setIsSignedIn] = useState<boolean>(true);
-  const [username, setUsername] = useState<string>("");
-  const [authToken, setAuthToken] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
 
   const path = usePathname();
+  const authContext = useContext(AuthContext)
   
   useEffect(() => {
-    console.log("isSigned: " + isSignedIn);
+    console.log("isSigned: " + authContext.isSignedIn);
     // if (!isSignedIn)
     //   router.replace("/auth/login");
-  }, [isSignedIn]);
+  }, [authContext.isSignedIn]);
 
   const theme = {
     ...DefaultTheme,
@@ -43,20 +27,11 @@ export default function RootLayout() {
   };
 
   return (
-    <AuthContext.Provider value={{
-      isSignedIn,
-      setIsSignedIn,
-      username,
-      setUsername,
-      authToken,
-      setAuthToken,
-      email,
-      setEmail,
-    }} >
+    <AuthProvider>
     <PaperProvider theme={theme}>
       <SafeAreaView style={{flex:1}}>
         {
-          isSignedIn 
+          authContext.isSignedIn 
           ? (
             <EventProvider>
             <Stack screenOptions={{
@@ -79,6 +54,6 @@ export default function RootLayout() {
         
       </SafeAreaView>
     </PaperProvider>
-    </AuthContext.Provider>
+    </AuthProvider>
   );
 }
