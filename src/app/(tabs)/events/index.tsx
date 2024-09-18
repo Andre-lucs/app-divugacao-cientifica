@@ -6,14 +6,14 @@ import { TEvent } from "@/@types/dataTypes";
 
 export default function Index() {
 
-  const {getEvents,events} = useContext(EventContext) as EventContextType;
+  const eventContext = useContext(EventContext);
 
   useEffect(() => {
-    getEvents();
+    eventContext?.getEvents();
   }, [])
 
   return (
-      <Events events={events} />
+      <Events events={eventContext?.events || []} />
   );
 }
 

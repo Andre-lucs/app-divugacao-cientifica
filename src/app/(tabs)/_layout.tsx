@@ -7,10 +7,10 @@ import { EventContext, EventContextType } from "@/src/contexts/EventContext";
 
 export default function TabLayout(){
 
-  const {getEvents,events} = useContext(EventContext) as EventContextType;
+  const eventContext = useContext(EventContext);
 
   useEffect(() => {
-    getEvents();
+    eventContext?.getEvents();
   }, [])
 
   return (
