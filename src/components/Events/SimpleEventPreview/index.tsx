@@ -10,7 +10,7 @@ export type SimpleEventPreviewProps = {
 export default function ({imageUrl, title, id}: SimpleEventPreviewProps) {
     return (
         <TouchableOpacity style={styles.container}>
-            <Link href={{pathname: `/events/${id}`,}}  style={{textAlign: "center"}}>
+            <Link href={{pathname: `/events/[eventId]`, params: { eventId: id }}}  style={{textAlign: "center"}}>
                 <View>
                     <Image source={{uri: imageUrl}} style={styles.eventImage}/>
                 </View>
