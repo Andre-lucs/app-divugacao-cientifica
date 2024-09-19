@@ -1,49 +1,55 @@
 import RowDetail from "@/src/components/RowDetail";
 import { EventAdditionalInfo, EventAdditionalInfoLabel, EventImage, EventInfo, EventName, EventPageContainer, EventPageDates, EventPageDateText, EventPageTitle } from "..";
-import MinicourseSection  from "@/src/components/Minicourses/MinicourseSection";
+import MinicourseSection from "@/src/components/Minicourses/MinicourseSection";
 import StackHeader from "@/src/components/StackHeader";
 import Map from "@/src/components/Map";
+import React from "react";
+import { TEvent } from "@/@types/dataTypes";
+import { PORT, SERVER_IP } from "@/varibles";
+import { formatDate } from "@/src/utils/dateUtils";
 
-
-export default  function EventPage () {
-    return (
-        <EventPageContainer>
-            <StackHeader/>
-            <EventImage source={{uri: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1784&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"}}/>
-            <EventInfo>
-                <EventPageTitle>Informações Gerais:</EventPageTitle>
-                <RowDetail/>
-                <EventPageDates>
-                    <EventPageDateText>Início: 09/09/2024</EventPageDateText>
-                    <EventPageDateText>Fim: 15/09/2024</EventPageDateText>
-                </EventPageDates>
-                <EventName>Nome do Evento</EventName>
-                <EventAdditionalInfoLabel>
-                    Tema:
-                        <EventAdditionalInfo> Programação</EventAdditionalInfo>
-                </EventAdditionalInfoLabel>
-                <EventAdditionalInfoLabel>
-                    Organizador:
-                        <EventAdditionalInfo> Organizador</EventAdditionalInfo>
-                </EventAdditionalInfoLabel>
-                <EventAdditionalInfoLabel>
-                    Comitê Organizador: 
-                        <EventAdditionalInfo> Comitê Organizador</EventAdditionalInfo>
-                </EventAdditionalInfoLabel>
-                <EventAdditionalInfoLabel>
-                    Descrição: 
-                        <EventAdditionalInfo> Programação</EventAdditionalInfo>
-                </EventAdditionalInfoLabel>
-                <RowDetail/>
-            </EventInfo>
-            <MinicourseSection/>
-            <EventPageTitle>Localização:</EventPageTitle>
-            <Map/>
-            
-        </EventPageContainer>
-    )
+type EventPageProps = {
+    eventData: TEvent | null
 }
 
 
+const EventPage: React.FC<EventPageProps> = ({eventData}: EventPageProps) => {
+    
+    if (eventData) {
+        return (
+            <EventPageContainer>
+                <StackHeader/>
+                <EventImage source={{uri: `${SERVER_IP}:${PORT}${eventData.photo}`}}/>
+                <EventInfo>
+                    <EventPageTitle>Informações Gerais:</EventPageTitle>
+                    <RowDetail/>
+                    <EventPageDates>
+                        <EventPageDateText>Início: {formatDate(eventData.startDate)}</EventPageDateText>
+                        <EventPageDateText>Fim: {formatDate(eventData.endDate)}</EventPageDateText>
+                    </EventPageDates>
+                    <EventName>{eventData.name}</EventName>
+                    <EventAdditionalInfoLabel>
+                        Tema: <EventAdditionalInfo>{eventData.theme}</EventAdditionalInfo>
+                    </EventAdditionalInfoLabel>
+                    <EventAdditionalInfoLabel>
+                        Organizador: <EventAdditionalInfo>{eventData.organizer}</EventAdditionalInfo>
+                    </EventAdditionalInfoLabel>
+                    <EventAdditionalInfoLabel>
+                        Comitê Organizador: <EventAdditionalInfo>{eventData.organizingCommitte}</EventAdditionalInfo>
+                    </EventAdditionalInfoLabel>
+                    <EventAdditionalInfoLabel>
+                        Descrição: <EventAdditionalInfo>{eventData.description}</EventAdditionalInfo>
+                    </EventAdditionalInfoLabel>
+                    <RowDetail/>
+                </EventInfo>
+                <MinicourseSection/>
+                <EventPageTitle>Localização:</EventPageTitle>
+                <Map/>
+            </EventPageContainer>
+        )
+    } else {
+        return null;
+    }
+};
 
-
+export default EventPage;
