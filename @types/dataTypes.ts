@@ -31,23 +31,19 @@ export type TFeedback = {
 }
 
 export type TEvent = {
+    _id: string
     name: string,
     description: string,
     theme: string,
     organizingCommitte: string,
-    startDate: Date,
-    endDate: Date,
+    startDate: string,
+    endDate: string,
     organizer: string,
-    photo: {
-        data: Buffer,
-        contentType: String
-    },
-    location:  {
+    photo: string
+    location?:  {
         type: 'Point',
         coordinates: number[]
     },
-    feedbacks: TFeedback[],
-    participants: string[]
 }
 
 export type DefaultError = {
