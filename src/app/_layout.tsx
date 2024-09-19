@@ -28,6 +28,7 @@ export default function RootLayout() {
 
   return (
     <AuthProvider>
+    <EventProvider>
     <PaperProvider theme={theme}>
       <SafeAreaView style={{flex:1}}>
         {
@@ -54,6 +55,7 @@ export default function RootLayout() {
         
       </SafeAreaView>
     </PaperProvider>
+    </EventProvider>
     </AuthProvider>
   );
 }
