@@ -24,7 +24,7 @@ export default function(p:props){
     {show && <DatePicker value={p.value || new Date()} onChange={onChangeDate}/>}
     {p.label && <FormInputLabel style={{color:'#52525C'}}>{p.label}</FormInputLabel>}
     <FormDateInput>
-      <Ionicons name="calendar-number-outline" size={24} color="#7A7A7A" />
+      <Ionicons name="calendar-number-outline" size={24} color="#000" />
       
       <FormInputLabel>
         {p.value instanceof Date && p.value.toLocaleDateString() || "Insira a data"}

@@ -42,7 +42,6 @@ export const DiscreteFormButtonText = styled.Text`
 export const BaseTextInput = styled.TextInput`
   padding: 10px;
   border-radius: 5px;
-  border: 2px solid #D9D9D9;
   min-height: 48px;
   max-height: 48px;
   display: flex;
@@ -63,7 +62,7 @@ export const TextInputErrorLabel = styled.Text`
 
 export const FormInputLabel = styled.Text`
   font-size: 15px;
-  color: #D9D9D9;
+  color: #000;
 `;
 
 export const FormDateInput = styled.View`
@@ -71,7 +70,8 @@ export const FormDateInput = styled.View`
   flex-direction: row;
   align-items: center;
   gap: 8px;
-  border: 2px solid #D9D9D9;
+  border: 2px solid ${()=> useTheme().colors.outline};
+  background-color: ${()=> useTheme().colors.surface};
   border-radius: 8px;
   padding: 10px;
   min-height: 48px;
