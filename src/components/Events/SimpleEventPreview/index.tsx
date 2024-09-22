@@ -1,3 +1,4 @@
+import { PORT, SERVER_IP } from "@/varibles";
 import { Link } from "expo-router";
 import { Image, View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
@@ -12,7 +13,7 @@ export default function ({imageUrl, title, id}: SimpleEventPreviewProps) {
         <TouchableOpacity style={styles.container}>
             <Link href={{pathname: `/events/[eventId]`, params: { eventId: id }}}  style={{textAlign: "center"}}>
                 <View>
-                    <Image source={{uri: imageUrl}} style={styles.eventImage}/>
+                    <Image source={{ uri: `${SERVER_IP}:${PORT}${imageUrl}`}} style={styles.eventImage}/>
                 </View>
                 <Text style={styles.eventPreviewText}>{title}</Text>
             </Link>

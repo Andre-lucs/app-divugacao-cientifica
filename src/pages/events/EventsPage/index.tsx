@@ -13,7 +13,6 @@ type props = {
 export default function (p:props) {
 
 
-
   return (
     <ContainerPageEvents>
       <StackHeader title="Eventos Disponíveis:"/>
@@ -23,7 +22,7 @@ export default function (p:props) {
       <ScrollView>
         {
         p.events.map(({theme, startDate, name, _id, photo}:TEvent)=>
-          (<EventPreview category={theme} key={_id} startDate={String(startDate)} id={_id} name={name}  path="events/[eventId]" imageUrl={photo} />)
+          (<EventPreview category={theme} key={_id} startDate={String(startDate)} id={_id} name={name}  imageUrl={photo} />)
         )
         }
       </ScrollView>

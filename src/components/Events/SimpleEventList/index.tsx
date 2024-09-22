@@ -1,29 +1,28 @@
 import { FlatList, StyleSheet, View, Text } from "react-native";
 import SimpleEventPreview from "../SimpleEventPreview";
+import { TEvent } from "@/@types/dataTypes";
+import { string } from "zod";
 
 type SimpleEventListProps = {
   title: string;
+  eventsData: TEvent[],
+  category: string
 }
 
 
 
-export default function SimpleEventList({ title }: SimpleEventListProps) {
+export default function SimpleEventList({ title, eventsData, category }: SimpleEventListProps) {
 
-  const imageTest = require('@/assets/images/ifpb_logo.jpeg')
-  const eventData = [
-    { id: '1', title: 'Evento 1', imageUrl: '@/assets/images/ifpb_logo.jpeg' },
-  
-  ];
 
   return (
     <View>
       <Text style={styles.title}>{title}</Text>
       <FlatList
-        data={eventData}
+        data={eventsData.filter((event) => event.theme === category)}
         renderItem={({ item }) => (
-          <SimpleEventPreview imageUrl={item.imageUrl} title={item.title} id={item.id} />
+          <SimpleEventPreview imageUrl={item.photo} title={item.name} id={item._id} />
         )}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item._id}
         horizontal={true}
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={styles.listContainer}
