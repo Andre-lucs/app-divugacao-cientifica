@@ -66,7 +66,7 @@ export function BaseForm(p:props){
     //validate if all required fields are filled
     for (let child of currentStepChildren[0].props["children"]) {
       if (child.props.required && !child.props.value) {
-        Alert.alert('Error', 'Por favor preenche todos os campos.');
+        Alert.alert('Error', 'Por favor preencha todos os campos.');
         console.log("required field not filled");
         return false;
       }
