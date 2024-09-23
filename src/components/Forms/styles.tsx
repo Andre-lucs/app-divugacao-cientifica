@@ -26,6 +26,7 @@ export const FormButton = styled.TouchableHighlight`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-grow: 1;
 `;
 
 export const FormButtonText = styled.Text`
@@ -94,7 +95,7 @@ export const FormCheckBox = styled.View`
 `;
 
 export const CheckBox = styled(CB)`
-  width: 15px;
-  height: 15px;
+  width: 20px;
+  height: 20px;
   border-radius: 5px;
 `;

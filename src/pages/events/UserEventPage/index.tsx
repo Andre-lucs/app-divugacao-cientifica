@@ -5,6 +5,7 @@ import Colors from "@/src/styles/Colors";
 import MinicourseRequestsSection from "@/src/components/Minicourses/MinicourseRequestsSection";
 import Map from "@/src/components/Map";
 import StackHeader from "@/src/components/StackHeader";
+import { useRouter } from "expo-router";
 import { TEvent } from "@/@types/dataTypes";
 import { PORT, SERVER_IP } from "@/varibles";
 import { Text } from "react-native";
@@ -15,6 +16,12 @@ type EventPageProps = {
 }
 
 export default  function MyEventPage ({eventData}: EventPageProps) {
+    const router = useRouter();
+
+    function goToUpdatePage(){
+        router.push("/events/editEvent");
+    }
+
     
     if(eventData)
         return (
@@ -22,7 +29,7 @@ export default  function MyEventPage ({eventData}: EventPageProps) {
                 <StackHeader/>
                 <EventImage source={{uri: `${SERVER_IP}:${PORT}${eventData.photo}`}}/>
                 <EventPageActions>
-                    <ButtonEvent title="Atualizar" color={`${Colors.blue}`}/>
+                    <ButtonEvent onPress={goToUpdatePage} title="Atualizar" color={`${Colors.blue}`}/>
                     <ButtonEvent title="Excluir" color={`${Colors.red}`}/>
                 </EventPageActions>
                 <EventInfo>

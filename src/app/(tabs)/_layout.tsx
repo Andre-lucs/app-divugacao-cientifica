@@ -1,19 +1,22 @@
-import { Tabs } from "expo-router";
+import { Redirect, Tabs } from "expo-router";
 import Header from "@/src/components/Header";
 import Feather from '@expo/vector-icons/Feather';
 import Colors from "@/src/styles/Colors";
 import { useContext, useEffect } from "react";
-import { EventContext, EventContextType } from "@/src/contexts/EventContext";
+import { EventContext, EventProvider } from "@/src/contexts/EventContext";
+import { AuthContext } from "@/src/contexts/AuthContext";
 
 export default function TabLayout(){
 
   const eventContext = useContext(EventContext);
+  const authContext = useContext(AuthContext);
 
   useEffect(() => {
     eventContext?.getEvents();
   }, [])
 
-  return (
+  const TabLayout = (
+  <EventProvider>
     <Tabs screenOptions={{ 
       tabBarShowLabel:true,
       tabBarActiveTintColor: 'white',
@@ -25,6 +28,7 @@ export default function TabLayout(){
     }}
       backBehavior="initialRoute"
       initialRouteName="index"
+      screenListeners={{tabPress: (e) => {console.log(JSON.stringify(authContext))} }}
       >
       <Tabs.Screen 
         name="index" 
@@ -48,5 +52,8 @@ export default function TabLayout(){
          }} 
       />
     </Tabs>
+  </EventProvider>
   );
+
+return (authContext?.authData?.isSignedIn ? TabLayout : <Redirect href="/auth" />)
 }

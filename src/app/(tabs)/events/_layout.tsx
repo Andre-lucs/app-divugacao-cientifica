@@ -7,6 +7,7 @@ export default function Index(){
       <Stack.Screen name="[eventId]"/>
       <Stack.Screen name="userEvent/[eventId]"/>
       <Stack.Screen name="newEvent"/>
+      <Stack.Screen name="editEvent"/>
     </Stack>
   )
 }

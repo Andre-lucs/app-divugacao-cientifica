@@ -1,8 +1,9 @@
 import React, { PropsWithChildren, ReactElement, useEffect, useState,forwardRef,useImperativeHandle, ForwardRefExoticComponent } from "react";
 import { FormBody,Form } from '@/src/components/Forms/styles';
 import FormButton from "../FormButton";
-import { Alert, StyleProp, ViewStyle } from "react-native";
+import { Alert, StyleProp, View, ViewStyle } from "react-native";
 import {ZodObject, z} from 'zod';
+import { useRouter } from "expo-router";
 
 export function validate(data: any, schema: ZodObject<any>, setErrors: Function){
   const result = schema.safeParse(data);
@@ -50,7 +51,7 @@ export function BaseForm(p:props){
 
   const [step, setStep] = useState(1)
   const [stepCount, setStepCount] = useState(0);
-
+  const router = useRouter();
   useEffect(()=>{
     setStepCount((p.children instanceof Array) ? p.children.length : 1);
     // let keys: string[] = [];
@@ -92,6 +93,11 @@ export function BaseForm(p:props){
   }
 
   const handlePrevious = () => {
+    if(step === 1) {
+      if(router.canDismiss()) router.dismiss(1)
+      else router.back();
+      return;
+    }
     setStep(prevStep => Math.max(prevStep - 1, 1));
   };
 
@@ -101,9 +107,9 @@ export function BaseForm(p:props){
         ? p.children.filter((child, index) => index === step - 1) 
         : p.children
       }
-        
-      {step > 1 && p.backButton != null && (
-        <FormButton onPress={handlePrevious}>{p.backButton || "Back"}</FormButton>
+      <View style={{flexDirection:'row', gap:10}}>
+      {p.backButton != null && (
+        <FormButton color="#f00" onPress={handlePrevious}>{p.backButton || "Back"}</FormButton>
       )}
 
       {step < stepCount ? (
@@ -111,6 +117,7 @@ export function BaseForm(p:props){
       ) : (
         <FormButton onPress={handleSubmit} >{p.doneButton || "Done"}</FormButton>
       )}
+      </View>
     </Form>
   )
 }

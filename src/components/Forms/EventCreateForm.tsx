@@ -45,7 +45,7 @@ export default function (p: props) {
     schemes={[stepOneSchema]}
     dataState={res}
     setErrors={setErrors}
-    backButton={null} doneButton="Cadastrar" nextButton="Próximo">
+    backButton={"Cancelar"} doneButton="Cadastrar" nextButton="Próximo">
       <FormStep style={{gap: 5}}>
         <FormTextInput
           onChangeText={handleChange('name')}

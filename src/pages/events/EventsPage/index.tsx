@@ -26,7 +26,6 @@ export default function (p:props) {
         )
         }
       </ScrollView>
-      <ButtonCreateEvent/>
     </ContainerPageEvents>
   );
 }

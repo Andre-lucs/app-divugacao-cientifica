@@ -28,7 +28,7 @@ export default function RegisterPage () {
             
             <BottomTextView>
                 <Text>Já tem uma conta?</Text>               
-                <Link href={"/auth/login"} replace>
+                <Link href={"/auth/"} replace>
                     <BottomTextButton>Entrar</BottomTextButton>
                 </Link>
             </BottomTextView>

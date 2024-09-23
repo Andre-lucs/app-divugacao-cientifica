@@ -1,17 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FlatList, TouchableOpacity, StyleSheet, Text, View, ScrollView } from 'react-native';
 import Feather from '@expo/vector-icons/Feather';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import Colors from '@/src/styles/Colors';
 import RowDetail from '@/src/components/RowDetail';
-import { useRouter } from 'expo-router';
+import { Href, useRouter } from 'expo-router';
+import { AuthContext } from '@/src/contexts/AuthContext';
 
 interface NavigationItem {
     icon: JSX.Element;
     title: string;
     path?: string;
 }
+
+
 
 const navigations: NavigationItem[] = [
     {
@@ -47,10 +50,11 @@ export default function () {
 
     const router = useRouter();
 
+    const authContext = useContext(AuthContext);
     const renderItem = ({ item }: { item: NavigationItem }) => (
         <TouchableOpacity style={styles.item} onPress={()=>{
             if(item.path){
-                router.push(item.path);
+                router.push(item.path as Href<any>);
                 console.log(item.path)
             }
         }}>
@@ -58,6 +62,10 @@ export default function () {
             <Text style={styles.title}>{item.title}</Text>
         </TouchableOpacity>
     );
+
+    function logOut(){
+        authContext.logOut();
+    }
 
     return (
         <View>
@@ -70,7 +78,7 @@ export default function () {
                 
             />
             <RowDetail/>
-            <TouchableOpacity style={styles.item}>
+            <TouchableOpacity onPressOut={logOut} style={styles.item}>
                 <Feather name="power" size={24} color={Colors.primary} />
                 <Text style={styles.title} >Sair</Text>
             </TouchableOpacity>

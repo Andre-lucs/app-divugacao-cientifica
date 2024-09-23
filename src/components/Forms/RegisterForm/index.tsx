@@ -51,7 +51,7 @@ export default function Index(p: props) {
   }, []);
 
 
-  const handleChange = (field: keyof RegisterFormResponse) => (value: string) => {
+  const handleChange = (field: keyof RegisterFormResponse) => (value: string|Date) => {
     setRes(prevRes => ({ ...prevRes, [field]: value }));
   };
 
@@ -134,7 +134,7 @@ export default function Index(p: props) {
           value={res.date}
           error={errors.date}
           label="Data de Nascimento:"
-          onChangeDate={(date) => handleChange('date')(date.toTimeString())}
+          onChangeDate={handleChange('date')}
         />
         <FormCheckBox key="acceptEmails" required={false} value={res.acceptEmails} onChange={(v)=> setRes({...res, acceptEmails:v})}>
           Receber emails sobre novos eventos

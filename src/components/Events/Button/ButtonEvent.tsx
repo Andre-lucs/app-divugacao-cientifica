@@ -4,11 +4,12 @@ type ButtonProps = {
     title: string;
     color?: string;
     width?: number
+    onPress?: () => void;
 };
 
-const ButtonEventComponent = ({ title, color, width }: ButtonProps) => {
+const ButtonEventComponent = ({ title, color, width, onPress }: ButtonProps) => {
     return (
-        <ButtonEvent color={color} width={width}>
+        <ButtonEvent onPress={onPress} color={color} width={width}>
             <ButtonEventText>{title}</ButtonEventText>
         </ButtonEvent>
     );

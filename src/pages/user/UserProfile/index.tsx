@@ -7,7 +7,6 @@ import UserNavigation from "@/src/components/User/UserNavigation";
 import { AuthContext } from "@/src/contexts/AuthContext";
 
 
-
 export default function() {
   const authContext = useContext(AuthContext);
 
@@ -26,7 +25,7 @@ export default function() {
         <View style={styles.userInfo}>
           <Image source={require('@/assets/images/user_photo_profile.png')}/>
           <View>
-            <Text style={styles.userName}>{authContext?.username}</Text>
+            <Text style={styles.userName}>{authContext?.authData?.username}</Text>
             <Text>Estudante</Text>
           </View>
         </View>

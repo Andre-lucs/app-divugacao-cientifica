@@ -1,16 +1,16 @@
 import { Alert, Text } from "react-native";
 import LoginForm from  "@/src/components/Forms/LoginForm/index";
 import { BottomTextButton, MainAuthView, LogoImage, BottomTextView,AuthPageView } from "@/src/pages/auth/styles";
-import { Link, router,  } from "expo-router";
+import { Link, router, usePathname,  } from "expo-router";
 import * as Auth from "@/src/services/auth";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { AuthContext } from "@/src/contexts/AuthContext";
 import { LoginData } from "@/@types/authTypes";
 
 export default function LoginPage () {
 
     const authContext = useContext(AuthContext);
-
+    
     function signIn(_logindata: LoginData){
         Auth.signIn(_logindata).then((data)=>{
             authContext.setAuthData(data);
