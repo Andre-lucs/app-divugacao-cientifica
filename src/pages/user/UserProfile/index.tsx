@@ -4,12 +4,12 @@ import Feather from '@expo/vector-icons/Feather';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import Colors from "@/src/styles/Colors";
 import UserNavigation from "@/src/components/User/UserNavigation";
-import { AuthContext } from "@/src/app/_layout";
+import { AuthContext } from "@/src/contexts/AuthContext";
+
 
 
 export default function() {
   const authContext = useContext(AuthContext);
-  const [date, setDate] = useState(new Date())
 
   return (
     <View

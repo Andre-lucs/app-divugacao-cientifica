@@ -4,50 +4,55 @@ import ButtonEvent from "@/src/components/Events/Button/ButtonEvent";
 import Colors from "@/src/styles/Colors";
 import MinicourseRequestsSection from "@/src/components/Minicourses/MinicourseRequestsSection";
 import Map from "@/src/components/Map";
-import { View, Text } from "react-native";
 import StackHeader from "@/src/components/StackHeader";
+import { TEvent } from "@/@types/dataTypes";
+import { PORT, SERVER_IP } from "@/varibles";
+import { Text } from "react-native";
+import { formatDate } from "@/src/utils/dateUtils";
 
+type EventPageProps = {
+    eventData: TEvent | null
+}
 
-export default  function MyEventPage () {
-    return (
-        <EventPageContainer>
-            <StackHeader/>
-            <EventImage source={{uri: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1784&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"}}/>
-            <EventPageActions>
-                 <ButtonEvent title="Atualizar" color={`${Colors.blue}`}/>
-                 <ButtonEvent title="Excluir" color={`${Colors.red}`}/>
-            </EventPageActions>
-            <EventInfo>
-                <EventPageTitle>Informações Gerais:</EventPageTitle>
-                <RowDetail/>
-                <EventPageDates>
-                    <EventPageDateText>Início: 09/09/2024</EventPageDateText>
-                    <EventPageDateText>Fim: 15/09/2024</EventPageDateText>
-                </EventPageDates>
-                <EventName>Nome do Evento</EventName>
-                <EventAdditionalInfoLabel>
-                    Tema:
-                        <EventAdditionalInfo> Programação</EventAdditionalInfo>
-                </EventAdditionalInfoLabel>
-                <EventAdditionalInfoLabel>
-                    Organizador:
-                        <EventAdditionalInfo> Organizador</EventAdditionalInfo>
-                </EventAdditionalInfoLabel>
-                <EventAdditionalInfoLabel>
-                    Comitê Organizador: 
-                        <EventAdditionalInfo> Comitê Organizador</EventAdditionalInfo>
-                </EventAdditionalInfoLabel>
-                <EventAdditionalInfoLabel>
-                    Descrição: 
-                        <EventAdditionalInfo> Programação</EventAdditionalInfo>
-                </EventAdditionalInfoLabel>
-                <RowDetail/>
-            </EventInfo>
-            <MinicourseRequestsSection/>
-            <EventPageTitle>Localização:</EventPageTitle>
-            <Map/>
-        </EventPageContainer>
-    )
+export default  function MyEventPage ({eventData}: EventPageProps) {
+    
+    if(eventData)
+        return (
+            <EventPageContainer>
+                <StackHeader/>
+                <EventImage source={{uri: `${SERVER_IP}:${PORT}${eventData.photo}`}}/>
+                <EventPageActions>
+                    <ButtonEvent title="Atualizar" color={`${Colors.blue}`}/>
+                    <ButtonEvent title="Excluir" color={`${Colors.red}`}/>
+                </EventPageActions>
+                <EventInfo>
+                    <EventPageTitle>Informações Gerais:</EventPageTitle>
+                    <RowDetail/>
+                    <EventPageDates>
+                        <EventPageDateText>Início: {formatDate(eventData.startDate)}</EventPageDateText>
+                        <EventPageDateText>Fim: {formatDate(eventData.endDate)}</EventPageDateText>
+                    </EventPageDates>
+                    <EventName>{eventData.name}</EventName>
+                    <EventAdditionalInfoLabel>
+                        Tema:
+                            <EventAdditionalInfo> {eventData.theme}</EventAdditionalInfo>
+                    </EventAdditionalInfoLabel>
+                    <EventAdditionalInfoLabel>
+                        Comitê Organizador: 
+                            <EventAdditionalInfo> {eventData.organizingCommitte}</EventAdditionalInfo>
+                    </EventAdditionalInfoLabel>
+                    <EventAdditionalInfoLabel>
+                        Descrição: 
+                            <EventAdditionalInfo> {eventData.description}</EventAdditionalInfo>
+                    </EventAdditionalInfoLabel>
+                    <RowDetail/>
+                </EventInfo>
+                <MinicourseRequestsSection/>
+                <EventPageTitle>Localização:</EventPageTitle>
+                <Map/>
+            </EventPageContainer>
+        )
+        return <Text>Evento não encontrado</Text>
 }
 
 

@@ -1,5 +1,6 @@
 import RowDetail from "@/src/components/RowDetail";
 import { EventAdditionalInfo, EventAdditionalInfoLabel, EventImage, EventInfo, EventName, EventPageContainer, EventPageDates, EventPageDateText, EventPageTitle } from "..";
+import ButtonEvent from "@/src/components/Events/Button/ButtonEvent";
 import MinicourseSection from "@/src/components/Minicourses/MinicourseSection";
 import StackHeader from "@/src/components/StackHeader";
 import Map from "@/src/components/Map";
@@ -7,6 +8,8 @@ import React from "react";
 import { TEvent } from "@/@types/dataTypes";
 import { PORT, SERVER_IP } from "@/varibles";
 import { formatDate } from "@/src/utils/dateUtils";
+import Colors from "@/src/styles/Colors";
+import RegistrationModal from "@/src/components/Minicourses/RegistrationModal";
 
 type EventPageProps = {
     eventData: TEvent | null
@@ -21,6 +24,7 @@ const EventPage: React.FC<EventPageProps> = ({eventData}: EventPageProps) => {
                 <StackHeader/>
                 <EventImage source={{uri: `${SERVER_IP}:${PORT}${eventData.photo}`}}/>
                 <EventInfo>
+                    <ButtonEvent title="Inscrever-se" color={Colors.secondary}/>
                     <EventPageTitle>Informações Gerais:</EventPageTitle>
                     <RowDetail/>
                     <EventPageDates>

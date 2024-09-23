@@ -1,14 +1,19 @@
 import { Alert, Button, Text, View, TextInput, StyleSheet, ScrollView } from "react-native";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "expo-router";
 import React from "react";
 import HomeTopics from "@/src/components/Home/HomeTopics";
 import SimpleEventList from "@/src/components/Events/SimpleEventList";
+import useEvents from "@/src/hooks/useEvents";
 
 
 export default function Index() {
-  const [date, setDate] = useState(new Date())
-  
+
+  const {events, getEvents} = useEvents();
+
+  useEffect(() => {
+    getEvents();
+  }, [])
 
   
   return (
@@ -24,9 +29,9 @@ export default function Index() {
         <Text style={styles.title}>Bem vindo(a)!</Text>
         <HomeTopics/>  
         <View style={styles.eventsList}>
-          <SimpleEventList title="Programação:"/> 
-          <SimpleEventList title="GameDev:"/> 
-          <SimpleEventList title="IA:"/> 
+          <SimpleEventList title="Programação:" eventsData={events} category="programação"/> 
+          <SimpleEventList title="GameDev:" eventsData={events} category="GameDev"/> 
+          <SimpleEventList title="IA:" eventsData={events} category="IA"/> 
         </View>
       </ScrollView>
   );

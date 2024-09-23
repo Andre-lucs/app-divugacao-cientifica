@@ -25,6 +25,7 @@ export const EventPageTitle = styled.Text`
 `
 export const EventInfo = styled.View`
     gap: 10px;
+    padding-top: 10px;
 `
 
 export const EventPageDates = styled.View`

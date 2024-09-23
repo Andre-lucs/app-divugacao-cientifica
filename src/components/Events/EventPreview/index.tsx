@@ -11,7 +11,7 @@ type Props = PropsWithChildren<{
     startDate: string;
     category: string;
     imageUrl: string;
-    path: string;
+    path?: string;
 }>
 
 export default function({ category, name, startDate, imageUrl, id, path }: Props) {
@@ -21,7 +21,7 @@ export default function({ category, name, startDate, imageUrl, id, path }: Props
             <EventPreviewInfo>
                 <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
                     <EventNamePreview><Text>{name}</Text></EventNamePreview>
-                    <Link href={{ pathname: `/events/[eventId]`, params: { eventId: id } }}>
+                    <Link href={{ pathname: !path ? `/events/[eventId]`: `/user/event/[eventId]`, params: { eventId: id } }}>
                         <ArrowIcon source={require('@/assets/images/arrow_icon.png')}/>
                     </Link>
                 </View>
