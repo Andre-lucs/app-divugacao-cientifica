@@ -10,7 +10,7 @@ const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/jpg", "image/png", "image/web
 
 
 type props = {
-  onSubmit?: (data: FormResponse) => void;
+  onSubmit?: (data: CreateEventResponse) => void;
 }
 
 const stepOneSchema = z.object({
@@ -28,14 +28,14 @@ const stepOneSchema = z.object({
 }).required();
 
 
-type FormResponse = z.infer<typeof stepOneSchema>;
-type ErrorMessagetype = Record<keyof FormResponse, string>;
+export type CreateEventResponse = z.infer<typeof stepOneSchema>;
+type ErrorMessagetype = Record<keyof CreateEventResponse, string>;
 
 export default function (p: props) {
-  const [res, setRes] = useState<FormResponse>({startDate: new Date(), endDate: new Date()} as FormResponse);
+  const [res, setRes] = useState<CreateEventResponse>({startDate: new Date(), endDate: new Date()} as CreateEventResponse);
   const [errors, setErrors] = useState<ErrorMessagetype>({} as ErrorMessagetype);
 
-  const handleChange = (field: keyof FormResponse) => (value: string|Date|LatLng) => {
+  const handleChange = (field: keyof CreateEventResponse) => (value: string|Date|LatLng) => {
     setRes(prevRes => ({ ...prevRes, [field]: value }));
   };
 
