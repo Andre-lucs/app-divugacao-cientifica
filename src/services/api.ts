@@ -8,7 +8,8 @@ interface FetchDataOptions {
   method?: string,
   data?: any,
   params?: any,
-  useToken?: boolean
+  useToken?: boolean,
+  useFormData?: boolean
 }
 
 export async function fetchApi(path : string, options: FetchDataOptions){
@@ -21,6 +22,14 @@ export async function fetchApi(path : string, options: FetchDataOptions){
       TOKEN = authDataTyped.authToken;
     }
   }
+  let formData;
+  if(options.useFormData){
+    formData = new FormData();
+    for (let key in options.data){
+      formData.append(key, options.data[key]);
+    }
+    options.data = formData;
+  }
 
   var bearer = 'Bearer ' + `${TOKEN}`;
   const configurationObject = {
@@ -28,10 +37,11 @@ export async function fetchApi(path : string, options: FetchDataOptions){
     url: SERVER_IP+":"+PORT+path,
     headers: {
         authorization : (options.useToken) ? bearer : undefined,
-        "Content-Type":"application/json"
+        "Content-Type": options.useFormData ? "multipart/form-data" : "application/json"
     },  
     params: options.params,
-    data: options.data
+    data: options.useFormData ? undefined : options.data,
+    formData: formData
     
   };
 
