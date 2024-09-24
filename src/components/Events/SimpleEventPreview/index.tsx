@@ -1,4 +1,4 @@
-import { PORT, SERVER_IP } from "@/varibles";
+import { PORT, SERVER_IP } from "@/globalVariables";
 import { Link } from "expo-router";
 import { Image, View, Text, StyleSheet, TouchableOpacity } from "react-native";
 

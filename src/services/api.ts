@@ -1,7 +1,8 @@
 import { AuthContextDataType } from "@/@types/authTypes";
-import { PORT, SERVER_IP } from "@/varibles";
+import { PORT, SERVER_IP } from "@/globalVariables";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
+import { usePathname, useRouter } from "expo-router";
 
 interface FetchDataOptions {
   method?: string,
@@ -10,9 +11,9 @@ interface FetchDataOptions {
   useToken?: boolean
 }
 
-export async function fetchApi(path : string, props: FetchDataOptions){
+export async function fetchApi(path : string, options: FetchDataOptions){
   let TOKEN;
-  if (props.useToken){
+  if (options.useToken){
     let user = await AsyncStorage.getItem('authData');
     const authData = JSON.parse(user||"{}");
     const authDataTyped = authData as AuthContextDataType;
@@ -21,26 +22,27 @@ export async function fetchApi(path : string, props: FetchDataOptions){
     }
   }
 
-    var bearer = 'Bearer ' + `${TOKEN}`;
-    console.log("url : "+SERVER_IP+":"+PORT+path)
-    const configurationObject = {
-      method:(props.method || 'get'),
-      url: SERVER_IP+":"+PORT+path,
-      headers: {
-          authorization : (props.useToken) ? bearer : undefined,
-          "Content-Type":"application/json"
-      },  
-      params: props.params,
-      data: props.data
-      
-    };
+  var bearer = 'Bearer ' + `${TOKEN}`;
+  const configurationObject = {
+    method:(options.method || 'get'),
+    url: SERVER_IP+":"+PORT+path,
+    headers: {
+        authorization : (options.useToken) ? bearer : undefined,
+        "Content-Type":"application/json"
+    },  
+    params: options.params,
+    data: options.data
+    
+  };
 
-    try{
-      console.log("data: "+JSON.stringify(configurationObject))
-      let response = await axios(configurationObject);
-      return response;
-    }catch(err: any){
-      console.log("probleminha"+err)
-      console.log(err.toJSON())
-    };
+  try{
+    let response = await axios(configurationObject);
+    return response;
+  }catch(err: any){
+    console.warn("Problema api: "+err)
+    if (err.status === 401){
+      AsyncStorage.removeItem('authData');
+      if (usePathname().startsWith("/auth/")) return;
+      useRouter().replace("/auth/");    }
+  };
 }

@@ -2,7 +2,7 @@ import { Image, View, Text, StyleSheet } from "react-native";
 import { ArrowIcon, CategoryInfo, EventCategoryPreview, EventDatePreview, EventImagePreview, EventNamePreview, EventPreview, EventPreviewInfo } from "../styles";
 import { PropsWithChildren } from "react";
 import { Link } from "expo-router";
-import { PORT, SERVER_IP } from "@/varibles";
+import { PORT, SERVER_IP } from "@/globalVariables";
 import { formatDate } from "@/src/utils/dateUtils";
 
 type Props = PropsWithChildren<{

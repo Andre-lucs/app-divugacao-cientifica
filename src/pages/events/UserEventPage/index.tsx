@@ -7,7 +7,7 @@ import Map from "@/src/components/Map";
 import StackHeader from "@/src/components/StackHeader";
 import { useRouter } from "expo-router";
 import { TEvent } from "@/@types/dataTypes";
-import { PORT, SERVER_IP } from "@/varibles";
+import { PORT, SERVER_IP } from "@/globalVariables";
 import { Text } from "react-native";
 import { formatDate } from "@/src/utils/dateUtils";
 

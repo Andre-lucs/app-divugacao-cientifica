@@ -6,7 +6,7 @@ import StackHeader from "@/src/components/StackHeader";
 import Map from "@/src/components/Map";
 import React from "react";
 import { TEvent } from "@/@types/dataTypes";
-import { PORT, SERVER_IP } from "@/varibles";
+import { PORT, SERVER_IP } from "@/globalVariables";
 import { formatDate } from "@/src/utils/dateUtils";
 import Colors from "@/src/styles/Colors";
 import RegistrationModal from "@/src/components/Minicourses/RegistrationModal";

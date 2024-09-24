@@ -1,7 +1,7 @@
 import { TEvent } from "@/@types/dataTypes";
 import { createContext, useState } from "react"
 import axios from "axios";
-import { PORT, SERVER_IP, TOKEN } from "@/varibles";
+import { PORT, SERVER_IP, TOKEN } from "@/globalVariables";
 
 export type EventContextType = {
     getEvents: () => Promise<any>;
