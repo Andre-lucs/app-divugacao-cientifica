@@ -26,19 +26,6 @@ export function AuthProvider({children}:PropsWithChildren){
     checkAuth();
   }, []);
 
-  async function testFetch(){
-    return new Promise<AuthContextDataType>((resolve) => {
-      setTimeout(() => {
-        resolve({
-          isSignedIn: true,
-          authToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBlZHJvQGdtYWlsLmNvbSIsImlhdCI6MTcyNzEwNTI1MSwiZXhwIjoxNzI3MTE2MDUxfQ.J9SS2Bh-Fe0m9EGuKW5QTHzMhRXvK-Lzfz5qHMI4f4U',
-          username: 'Thiago',
-          email: 'thiagomarinho@rockeseat.com.br',
-        });
-      }, 2000);
-    });
-  }
-
   async function storeData(value: AuthContextDataType) {
     try {
       const jsonValue = JSON.stringify(value);
@@ -62,7 +49,7 @@ export function AuthProvider({children}:PropsWithChildren){
           router.replace("/");
           return;
         }
-        console.error("Token expired");
+        console.log("Token expired");
       } 
       console.log("User not logged");
       logOut();    
@@ -89,9 +76,28 @@ export function AuthProvider({children}:PropsWithChildren){
   }
   
   async function register(data:RegisterFormResponse) : Promise<AuthContextDataType> {
-    let newData = await testFetch();
-    return await login({email: data.email, password: data.password});
-    //if an error ocours, throw an error
+    let age = new Date().getFullYear() - data.date.getFullYear();
+    if (data.date.getMonth() > new Date().getMonth() || (data.date.getMonth() == new Date().getMonth() && data.date.getDate() > new Date().getDate())) age--;
+    try{
+      let response = await fetchApi("/usuario/registrar",{
+        method: "post",
+        useToken: false,
+        data:{
+          email: data.email,
+          name: data.name,
+          age,
+          password: data.password,
+          address: data.address,
+          educationLevel: data.education,
+          wantEmails: data.acceptEmails
+        }
+      });
+      if (response?.status && response?.status >= 200 && response?.status < 300)
+        return await login({email: data.email, password: data.password});
+      throw new Error("Erro ao registrar");
+    } catch (error){
+      throw new Error("Erro ao registrar");
+    }
   }
 
   function logOut(){
