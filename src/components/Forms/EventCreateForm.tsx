@@ -103,7 +103,7 @@ export default function (p: props) {
           required
         />
         <FormImageInput
-        label="Imagem:"
+        label="Escolha uma imagem para representar o evento:"
         key="image"
         onChange={handleChange('image')}
         value={res.image}
