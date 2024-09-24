@@ -1,8 +1,9 @@
 import { AuthContextDataType, LoginData, RegisterFormResponse } from "@/@types/authTypes";
 import { createContext, PropsWithChildren, useEffect, useState } from "react";
-import { useRouter } from 'expo-router';
+import { usePathname, useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { jwtDecode } from 'jwt-decode';
+import { fetchApi } from "../services/api";
 
 type AuthContextType = {
   authData: AuthContextDataType,
@@ -19,6 +20,7 @@ export function AuthProvider({children}:PropsWithChildren){
 
   const [authData, setAuthData] = useState<AuthContextDataType>({isSignedIn: false} as AuthContextDataType);
   const router = useRouter();
+  const pathName = usePathname();
   
   useEffect(() => {
     checkAuth();
@@ -71,17 +73,19 @@ export function AuthProvider({children}:PropsWithChildren){
   }
   
   async function login(data : LoginData) : Promise<AuthContextDataType> {
-    //fetch
-    //if response.ok
-    //return response.data as 
-    //else
-    //throw error example: new Error("Email não cadastrado") || new Error("Senha incorreta")
-    console.log(JSON.stringify(data));
-    let newData = await testFetch();
-    setAuthData(newData);
-    router.replace("/");
-    storeData(newData);
-    return newData;
+    let response = await fetchApi("/usuario/login",{
+      method: "post", 
+      useToken: false, 
+      data
+    });
+    if (response?.data){
+      let dataToStore : AuthContextDataType = {authToken: response.data.token, isSignedIn: true, email: response.data.user.email, username: response.data.user.name};
+      setAuthData(dataToStore);
+      storeData(dataToStore);
+      router.replace("/");
+      return response.data;
+    }
+    throw new Error("Erro ao fazer login");
   }
   
   async function register(data:RegisterFormResponse) : Promise<AuthContextDataType> {
@@ -92,8 +96,9 @@ export function AuthProvider({children}:PropsWithChildren){
 
   function logOut(){
     setAuthData({isSignedIn: false, authToken: "", email: "", username: ""});
+    AsyncStorage.removeItem('authData');
+    if (pathName.startsWith("/auth/")) return;
     router.replace("/auth/");
-    console.log("asdsadsad"+JSON.stringify(authData))
   }
 
   return (

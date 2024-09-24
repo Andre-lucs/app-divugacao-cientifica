@@ -14,7 +14,7 @@ export default function LoginPage () {
         authContext.login(_logindata).then((data)=>{
             console.log(data);
         }).catch((error:Error)=>{
-            Alert.alert("Erro :", error.message, [{text:"Ok"}]);
+            Alert.alert("Error :", error.message, [{text:"Tentar novamente"}]);
         });
     }
 
