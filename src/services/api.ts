@@ -39,10 +39,11 @@ export async function fetchApi(path : string, options: FetchDataOptions){
     let response = await axios(configurationObject);
     return response;
   }catch(err: any){
-    console.warn("Problema api: "+err)
+    console.error("Problema api: "+err)
     if (err.status === 401){
       AsyncStorage.removeItem('authData');
       if (usePathname().startsWith("/auth/")) return;
-      useRouter().replace("/auth/");    }
+      useRouter().replace("/auth/");    
+    }
   };
 }
