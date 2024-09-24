@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { date, z } from 'zod';
 
 type props = {
-  onSubmit?: (data: RegisterFormResponse) => void;
+  onSubmit: (data: RegisterFormResponse) => void;
 }
 
 export const RegisterFormStepOneSchema = z.object({
@@ -55,9 +55,13 @@ export default function Index(p: props) {
     setRes(prevRes => ({ ...prevRes, [field]: value }));
   };
 
+  const handleSubmit = () => {
+    p.onSubmit(res);
+  }
+
   return (
     <BaseForm 
-    onSubmit={() => p.onSubmit ? p.onSubmit(res) : undefined} 
+    onSubmit={handleSubmit} 
     schemes={[RegisterFormStepOneSchema, RegisterFormStepTwoSchema]}
     dataState={res}
     setErrors={setErrors}
