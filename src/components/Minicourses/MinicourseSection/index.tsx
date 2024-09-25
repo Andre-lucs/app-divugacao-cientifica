@@ -2,25 +2,30 @@ import { EventPageTitle } from "@/src/pages/events";
 import { MinicourseSection } from "@/src/components/Minicourses/styles";
 import Minicourse from "@/src/components/Minicourses/Minicourse";
 import { Text, View } from "react-native";
-import { TMinicourse } from "@/@types/dataTypes";
+import { TEvent, TMinicourse } from "@/@types/dataTypes";
 import { Link, useRouter } from "expo-router";
 import ButtonEventComponent from "../../Events/Button/ButtonEvent";
 
 type MinicourseSectionProps = {
     minicoursesData: TMinicourse[]; 
-    eventId: string;
+    eventData: TEvent | null;
 };
+const now = new Date();
 
-export const MinicourseSectionComponent: React.FC<MinicourseSectionProps> = ({ minicoursesData,eventId }) => {
+export const MinicourseSectionComponent: React.FC<MinicourseSectionProps> = ({ minicoursesData,eventData }) => {
 
     const Router = useRouter();
+
+    const eventStartDate = new Date(eventData?.startDate || "");
+
 
     return (
         <MinicourseSection>
             <EventPageTitle>Minicursos:</EventPageTitle>
-            <View style={{alignSelf:"flex-end"}} >
-            <ButtonEventComponent title="Solicitar criação" width={150} onPress={()=>Router.push({pathname:"/(tabs)/events/requestMinicourse/[eventId]", params:{eventId}})}/>
+            {eventStartDate > now && <View style={{alignSelf:"flex-end"}} >
+            <ButtonEventComponent title="Solicitar criação" width={150} onPress={()=>Router.push({pathname:"/(tabs)/events/requestMinicourse/[eventId]", params:{eventId: eventData?._id}})}/>
             </View>
+            }
             {(!minicoursesData || minicoursesData.length === 0) 
             ? <Text>Esse evento ainda não possui minicursos</Text>
             : 

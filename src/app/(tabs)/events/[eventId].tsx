@@ -27,7 +27,7 @@ export default function () {
             if (eventId) {
                 const data = await getEventById(String(eventId));
                 console.log(data)
-                setEventData(data);
+                if (data)setEventData(data);
             }
         };
 
