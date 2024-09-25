@@ -17,11 +17,11 @@ const Map: React.FC<MapProps> = ({ coordinates, title }) => {
         style={styles.map}
         initialRegion={{
           ...coordinates,
-          latitudeDelta: 0.0922, 
-          longitudeDelta: 0.0421, 
+          latitudeDelta: 0.00922, 
+          longitudeDelta: 0.00421, 
         }}
       >
-        <Marker coordinate={coordinates} title={title} />
+        <Marker coordinate={coordinates} title={title} draggable={false} />
       </MapView>
     </View>
   );

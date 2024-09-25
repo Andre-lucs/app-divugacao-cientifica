@@ -112,7 +112,7 @@ const EventPage: React.FC<EventPageProps> = ({ eventData }: EventPageProps) => {
             
             <MinicourseSectionComponent minicoursesData={minicourses} />
             <EventPageTitle>Localização:</EventPageTitle>
-            {/* <Map coordinates={{latitude: eventData.location.coordinates[0], longitude: eventData.location.coordinates[1]}} title={eventData.name} /> */}
+            <Map coordinates={ {latitude:eventData.location.coordinates[0], longitude:eventData.location.coordinates[1]}} title={eventData.name} />
         </EventPageContainer>
     );
 };
