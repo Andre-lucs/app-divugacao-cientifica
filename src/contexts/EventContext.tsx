@@ -2,6 +2,7 @@ import { TEvent } from "@/@types/dataTypes";
 import { createContext, useState } from "react"
 import axios from "axios";
 import { PORT, SERVER_IP, TOKEN } from "@/globalVariables";
+import { Alert } from "react-native";
 
 export type EventContextType = {
     getEvents: () => Promise<any>;
@@ -133,24 +134,39 @@ export const EventProvider: React.FC<{children: React.ReactNode}> = ({ children 
     }
     
     const registerForEvent = async (email: string, eventId: string) => {
-        const url = `${SERVER_IP}:${PORT}/evento/${eventId}/adicionar-participante/${email}`;
-        const bearer = 'Bearer ' + `${TOKEN}`;
-
-        const configurationObject = {
-            
-            method: 'post',
-            url: url,
-            headers: {
-                authorization: bearer,
-                "Content-Type": "application/json"
-            },
-            params: {
-                email,
-                id: eventId
+        try {
+            const url = `${SERVER_IP}:${PORT}/evento/${eventId}/adicionar-participante/${email}`;
+            const bearer = 'Bearer ' + TOKEN; // Verifique se `TOKEN` está disponível
+    
+            const configurationObject = {
+                method: 'post',
+                url: url,
+                headers: {
+                    authorization: bearer,
+                    "Content-Type": "application/json",
+                },
+                params: {
+                    email,
+                    id: eventId,
+                },
+            };
+    
+            const response = await axios(configurationObject);
+    
+            if (response.status === 200) {
+                Alert.alert("Sucesso", "Usuário adicionado ao evento com sucesso!");
+            } else {
+                Alert.alert("Erro", "Não foi possível inscrever no evento.");
             }
-        };
-        
-    }
+        } catch (error: any) {
+            if (error.response && error.response.data) {
+                Alert.alert("Erro", error.response.data);  
+            } else {
+                Alert.alert("Erro", "Ocorreu um erro inesperado. Tente novamente.");
+            }
+        }
+    };
+    
 
     return (
         <EventContext.Provider value={{getEvents,  events, getEventById, userEventHistory, getUserEvents, registerForEvent}}>{children}</EventContext.Provider>

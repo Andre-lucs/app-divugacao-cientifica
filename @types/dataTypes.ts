@@ -44,6 +44,7 @@ export type TEvent = {
         type: 'Point',
         coordinates: number[]
     },
+    participants?: string[]
 }
 
 export type DefaultError = {
