@@ -7,6 +7,7 @@ export interface AuthContextDataType {
   username: string;
   authToken: string;
   email: string;
+  userId : string;
 }
 
 export type LoginData = z.infer<typeof LoginSchema>;
