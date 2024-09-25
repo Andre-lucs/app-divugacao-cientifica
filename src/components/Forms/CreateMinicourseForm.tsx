@@ -1,10 +1,9 @@
 import { FormTextInput, BaseForm, FormStep, FormDateInput } from "@/src/components/Forms/components"
 import { useState } from "react";
 import { z } from 'zod';
-import { LatLng } from "react-native-maps";
 
 type props = {
-  onSubmit?: (data: FormResponse) => void;
+  onSubmit?: (data: MinicourseDataType) => void;
 }
 
 const stepOneSchema = z.object({
@@ -14,14 +13,14 @@ const stepOneSchema = z.object({
 }).required();
 
 
-type FormResponse = z.infer<typeof stepOneSchema>;
-type ErrorMessagetype = Record<keyof FormResponse, string>;
+export type MinicourseDataType = z.infer<typeof stepOneSchema>;
+type ErrorMessagetype = Record<keyof MinicourseDataType, string>;
 
 export default function (p: props) {
-  const [res, setRes] = useState<FormResponse>({minicourseDate: new Date()} as FormResponse);
+  const [res, setRes] = useState<MinicourseDataType>({minicourseDate: new Date()} as MinicourseDataType);
   const [errors, setErrors] = useState<ErrorMessagetype>({} as ErrorMessagetype);
 
-  const handleChange = (field: keyof FormResponse) => (value: string|Date) => {
+  const handleChange = (field: keyof MinicourseDataType) => (value: string|Date) => {
     setRes(prevRes => ({ ...prevRes, [field]: value }));
   };
 
