@@ -56,8 +56,8 @@ export default  function MyEventPage ({eventData}: EventPageProps) {
                 </EventInfo>
                 <MinicourseRequestsSection/>
                 <EventPageTitle>Localização:</EventPageTitle>
-                <Map/>
-            </EventPageContainer>
+                <Map coordinates={ {latitude:eventData.location.coordinates[0], longitude:eventData.location.coordinates[1]}} title={eventData.name} />
+                </EventPageContainer>
         )
         return <Text>Evento não encontrado</Text>
 }
