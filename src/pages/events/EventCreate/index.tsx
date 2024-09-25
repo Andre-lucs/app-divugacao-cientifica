@@ -3,7 +3,7 @@ import StackHeader from "@/src/components/StackHeader";
 import { eventCreate } from "@/src/services/eventRequests";
 import { Redirect, usePathname, useRouter } from "expo-router";
 import { useEffect, useState } from "react";
-import { ScrollView } from "react-native";
+import { Alert, ScrollView } from "react-native";
 
 export default function () {
   const [created, setCreated] = useState(false);
@@ -11,7 +11,7 @@ export default function () {
   async function handleSubmit(data: CreateEventResponse) {
     let response = await eventCreate(data);
     if (response?.status == 201) {
-      alert('Evento criado com sucesso!');
+      Alert.alert('Evento criado com sucesso!');
       setCreated(true);
     }
   }

@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 export default function(){
 
-  const [userEvents, setUserEvents] = useState<TEvent[] | []>( []);
+  const [userEvents, setUserEvents] = useState<TEvent[]>([]);
   const {getUserEvents} = useEvents();
   const userId = "66e725bee3f330c276451992"
 
