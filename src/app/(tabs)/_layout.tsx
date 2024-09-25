@@ -5,6 +5,7 @@ import Colors from "@/src/styles/Colors";
 import { useContext, useEffect } from "react";
 import { EventContext, EventProvider } from "@/src/contexts/EventContext";
 import { AuthContext } from "@/src/contexts/AuthContext";
+import { MinicourseProvider } from "@/src/contexts/MinicourseContext";
 
 export default function TabLayout(){
 
@@ -17,6 +18,8 @@ export default function TabLayout(){
 
   const TabLayout = (
   <EventProvider>
+  <MinicourseProvider>
+
     <Tabs screenOptions={{ 
       tabBarShowLabel:true,
       tabBarActiveTintColor: 'white',
@@ -52,6 +55,7 @@ export default function TabLayout(){
          }} 
       />
     </Tabs>
+  </MinicourseProvider>
   </EventProvider>
   );
 
