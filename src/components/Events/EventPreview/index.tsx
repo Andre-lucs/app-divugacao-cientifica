@@ -11,17 +11,17 @@ type Props = PropsWithChildren<{
     startDate: string;
     category: string;
     imageUrl: string;
-    path?: string;
+    toUserEvent?: boolean;
 }>
 
-export default function({ category, name, startDate, imageUrl, id, path }: Props) {
+export default function({ category, name, startDate, imageUrl, id, toUserEvent }: Props) {
     return (
         <EventPreview >
             <EventImagePreview source={{ uri: `${SERVER_IP}:${PORT}${imageUrl}` }} /> 
             <EventPreviewInfo>
                 <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
                     <EventNamePreview><Text>{name}</Text></EventNamePreview>
-                    <Link href={{ pathname: !path ? `/events/[eventId]`: `/user/event/[eventId]`, params: { eventId: id } }}>
+                    <Link href={{ pathname: !toUserEvent ? `/events/[eventId]`: `/user/event/[eventId]`, params: { eventId: id } }}>
                         <ArrowIcon source={require('@/assets/images/arrow_icon.png')}/>
                     </Link>
                 </View>

@@ -10,18 +10,15 @@ export default function () {
     const { eventId } = useLocalSearchParams();
     const [myeventData, setMyEventData] = useState<TEvent | null>(null); 
     const { getEventById } = useEvents();
-
-    useEffect(() => {
-        const fetchMyEventData = async () => {
-            if (eventId) {
-                const data = await getEventById(String(eventId));
-                setMyEventData(data);
-            }
-        };
-
-        
+    
+    const fetchMyEventData = async () => {
+        if (eventId) {
+            const data = await getEventById(String(eventId));
+            setMyEventData(data);
+        }
+    };
+    useEffect(() => {        
         fetchMyEventData();
-        
     }, []);
     
     return (

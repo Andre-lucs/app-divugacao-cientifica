@@ -54,18 +54,18 @@ export async function fetchApi(path : string, options: FetchDataOptions){
     let response = await axios(configurationObject);
     return response;
   } catch (error: any) {
-    console.error('Network error:', error);
+    console.log('Network error:', error);
     if (error && error.response) {
       // Server responded with a status other than 2xx
-      console.error('Response data:', error.response.data);
-      console.error('Response status:', error.response.status);
-      console.error('Response headers:', error.response.headers);
+      console.log('Response data:', error.response.data);
+      console.log('Response status:', error.response.status);
+      console.log('Response headers:', error.response.headers);
     } else if (error.request) {
       // Request was made but no response received
-      console.error('Request data:', error.request);
+      console.log('Request data:', error.request);
     } else {
       // Something happened in setting up the request
-      console.error('Error message:', error.message);
+      console.log('Error message:', error.message);
     }
     throw error;
   }

@@ -6,17 +6,34 @@ import MinicourseRequestsSection from "@/src/components/Minicourses/MinicourseRe
 import Map from "@/src/components/Map";
 import StackHeader from "@/src/components/StackHeader";
 import { useRouter } from "expo-router";
-import { TEvent } from "@/@types/dataTypes";
+import { TEvent, TMinicourse } from "@/@types/dataTypes";
 import { PORT, SERVER_IP } from "@/globalVariables";
 import { Text } from "react-native";
 import { formatDate } from "@/src/utils/dateUtils";
+import { useContext, useEffect, useState } from "react";
+import { MinicourseContext } from "@/src/contexts/MinicourseContext";
+import { MinicourseSectionComponent } from "@/src/components/Minicourses/MinicourseSection";
 
 type EventPageProps = {
     eventData: TEvent | null
 }
 
-export default  function MyEventPage ({eventData}: EventPageProps) {
+export default function MyEventPage ({eventData}: EventPageProps) {
     const router = useRouter();
+    const [minicourses, setMinicourses] = useState<TMinicourse[]>([]);
+    const { getMinicoursesRequests } = useContext(MinicourseContext);
+
+    const fetchMinicourses = async () => {
+        if (eventData) {
+            const fetchedMinicourses = await getMinicoursesRequests(eventData._id);
+            console.log("ajndansdas:"+fetchedMinicourses);
+            setMinicourses(fetchedMinicourses);
+        }
+    };
+    useEffect(() => {
+        fetchMinicourses();
+    }, [eventData]);
+
 
     function goToUpdatePage(){
         router.push("/events/editEvent");
@@ -54,7 +71,7 @@ export default  function MyEventPage ({eventData}: EventPageProps) {
                     </EventAdditionalInfoLabel>
                     <RowDetail/>
                 </EventInfo>
-                <MinicourseRequestsSection/>
+                <MinicourseRequestsSection eventData={eventData} minicoursesData={minicourses} setMinicoursesData={setMinicourses} />
                 <EventPageTitle>Localização:</EventPageTitle>
                 <Map coordinates={ {latitude:eventData.location.coordinates[0], longitude:eventData.location.coordinates[1]}} title={eventData.name} />
                 </EventPageContainer>

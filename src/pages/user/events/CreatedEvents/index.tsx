@@ -21,7 +21,7 @@ export default function MyEventsPage ({events}: MyEventsPageProps) {
       <ScrollView>
       {
         events && events.map(({theme, startDate, name, _id, photo}:TEvent)=>
-          (<EventPreview category={theme} key={_id} startDate={String(startDate)} id={_id} name={name}  path="user/event/[eventId]" imageUrl={photo} />)
+          (<EventPreview toUserEvent category={theme} key={_id} startDate={String(startDate)} id={_id} name={name} imageUrl={photo} />)
         )
         }
       </ScrollView>

@@ -41,13 +41,13 @@ const EventPage: React.FC<EventPageProps> = ({ eventData }: EventPageProps) => {
     const showModal = () => setIsModalVisible(true);
     const hideModal = () => setIsModalVisible(false);
 
+    const fetchMinicourses = async () => {
+        if (eventData && eventData.minicourses && eventData.minicourses.length > 0) {
+            const fetchedMinicourses = await getMinicoursesByIds(eventData._id);
+            setMinicourses(fetchedMinicourses);
+        }
+    };
     useEffect(() => {
-        const fetchMinicourses = async () => {
-            if (eventData && eventData.minicourses && eventData.minicourses.length > 0) {
-                const fetchedMinicourses = await getMinicoursesByIds(eventData.minicourses);
-                setMinicourses(fetchedMinicourses);
-            }
-        };
 
         fetchMinicourses();
     }, [eventData, getMinicoursesByIds]);

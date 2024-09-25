@@ -6,9 +6,10 @@ import { TEvent, TMinicourse } from "@/@types/dataTypes";
 import { Link, useRouter } from "expo-router";
 import ButtonEventComponent from "../../Events/Button/ButtonEvent";
 
-type MinicourseSectionProps = {
+export type MinicourseSectionProps = {
     minicoursesData: TMinicourse[]; 
     eventData: TEvent | null;
+    setMinicoursesData?: React.Dispatch<React.SetStateAction<TMinicourse[]>>;
 };
 const now = new Date();
 
@@ -22,7 +23,7 @@ export const MinicourseSectionComponent: React.FC<MinicourseSectionProps> = ({ m
     return (
         <MinicourseSection>
             <EventPageTitle>Minicursos:</EventPageTitle>
-            {eventStartDate > now && <View style={{alignSelf:"flex-end"}} >
+            {eventStartDate < now && <View style={{alignSelf:"flex-end"}} >
             <ButtonEventComponent title="Solicitar criação" width={150} onPress={()=>Router.push({pathname:"/(tabs)/events/requestMinicourse/[eventId]", params:{eventId: eventData?._id}})}/>
             </View>
             }
@@ -31,7 +32,7 @@ export const MinicourseSectionComponent: React.FC<MinicourseSectionProps> = ({ m
             : 
             <>
                 {minicoursesData.map(({ _id, subject }) => (
-                    <Minicourse subject={subject} date="09/09/2024" key={_id} />
+                    <Minicourse subject={subject} date="09/09/2024" key={_id} requestId={_id} />
                 ))}
             </>
             }
