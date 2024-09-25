@@ -1,8 +1,22 @@
 import { CreateEventResponse } from '@/src/components/Forms/EventCreateForm';
-import {fetchApi} from './api'
-import * as FileSystem from 'expo-file-system';
+import {fetchApi} from './api';
+import { MinicourseDataType } from '@/src/components/Forms/CreateMinicourseForm';
+import { AxiosResponse } from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { AuthContextDataType } from '@/@types/authTypes';
 
-export async function eventCreate(data:CreateEventResponse){
+
+async function useAuthUserId() {
+  let user =  JSON.parse(await AsyncStorage.getItem('authData') ||"{}") as AuthContextDataType;
+  if (!user.userId) {
+    console.error(JSON.stringify(user));
+    throw new Error('User not logged');
+  }
+  return user.userId;
+}
+
+export async function eventCreate(data:CreateEventResponse) : Promise<AxiosResponse<any, any>>
+{
   let imageUri = data.image;
 
   let formData = new FormData();
@@ -16,7 +30,7 @@ export async function eventCreate(data:CreateEventResponse){
   }));
   formData.append('theme', data.theme);
   formData.append('organizingCommitte', data.committee);
-  formData.append('organizer', "656a4d952f028b43876fda75");
+  formData.append('organizer', await useAuthUserId() );
   formData.append('photo', {
     uri: imageUri,
     type: 'image/jpg',
@@ -30,4 +44,19 @@ export async function eventCreate(data:CreateEventResponse){
     data: formData,
   })
 
+}
+
+export async function requestMinicourse(data: MinicourseDataType, eventId: string) : Promise<AxiosResponse<any, any>>
+{
+  let renamedData = {
+      subject: data.theme,
+      ministering: await useAuthUserId(),
+      eventId: eventId  
+  };
+  console.log(renamedData);
+  return await fetchApi('/requesicao-minicurso', {
+    method: 'POST',
+    useToken: true,
+    data: renamedData,
+  });
 }
