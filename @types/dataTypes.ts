@@ -40,7 +40,8 @@ export type TEvent = {
     endDate: string,
     organizer: string,
     photo: string
-    location?:  {
+    minicourses: string[]
+    location:  {
         type: 'Point',
         coordinates: number[]
     },
@@ -53,10 +54,12 @@ export type DefaultError = {
 }
 
 export type TMinicourse = {
+    _id: string
     subject: string,
     ministering: string,
     registrants?: string[]
     eventId: string
+    date: string
 }
 
 export type THackaton = { 
