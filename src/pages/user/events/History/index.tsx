@@ -8,38 +8,53 @@ import { useContext, useEffect, useState } from "react";
 import { TEvent } from "@/@types/dataTypes";
 import { AuthContext } from "@/src/contexts/AuthContext";
 
-
 export default function () {
-
-  const { userEventHistory} = useEvents();
+  const { userEventHistory } = useEvents();
   const [historyEvents, setHistoryEvents] = useState<TEvent[]>([]);
+  const [searchText, setSearchText] = useState("");
   const authContext = useContext(AuthContext);
 
   useEffect(() => {
-
     const fetchEventData = async () => {
       if (authContext.authData.userId) {
-          const data = await userEventHistory(String(authContext.authData.userId));
-          setHistoryEvents(data);
+        const data = await userEventHistory(String(authContext.authData.userId));
+        setHistoryEvents(data);
       }
     };
 
     fetchEventData();
+  }, []);
 
-  }, [])
-
-
+  const filteredEvents = historyEvents.filter(event =>
+    event.name.toLowerCase().includes(searchText.toLowerCase()) ||
+    event.theme.toLowerCase().includes(searchText.toLowerCase())
+  );
 
   return (
     <ContainerPageEvents>
-      <StackHeader title="Histórico:"/>
+      <StackHeader title="Histórico:" />
       <SearchInputContainer>
-        <SearchInput/>
+        <SearchInput
+          value={searchText}
+          onChangeText={setSearchText}
+          placeholder="Buscar no histórico..."
+        />
       </SearchInputContainer>
       <ScrollView>
-       {historyEvents ? historyEvents.map(({_id, startDate, name, photo, theme})=> (
-        <EventPreview category={theme} id={_id} imageUrl={photo} startDate={startDate} name={name} key={_id} />
-       )) : <Text>Eventos não encontrados</Text>}
+        {filteredEvents.length > 0 ? (
+          filteredEvents.map(({ _id, startDate, name, photo, theme }) => (
+            <EventPreview
+              category={theme}
+              id={_id}
+              imageUrl={photo}
+              startDate={startDate}
+              name={name}
+              key={_id}
+            />
+          ))
+        ) : (
+          <Text>Eventos não encontrados</Text>
+        )}
       </ScrollView>
     </ContainerPageEvents>
   );
