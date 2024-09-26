@@ -23,7 +23,7 @@ export default function() {
     >
       <View style={styles.userInfoProfileContainer}>
         <View style={styles.userInfo}>
-          <Image source={require('@/assets/images/user_photo_profile.png')}/>
+          <Image source={require('@/assets/images/user_profile_image.png')} style={styles.userImage}/>
           <View>
             <Text style={styles.userName}>{authContext?.authData?.username}</Text>
             <Text>Estudante</Text>
@@ -32,11 +32,11 @@ export default function() {
         <View>
           <View style={styles.userAdditionalInfo}>
             <Feather name="phone" size={24} color={Colors.primary} />
-            <Text>(99) 9999-9999</Text>
+            <Text>{}</Text>
           </View>
           <View style={styles.userAdditionalInfo}>
             <MaterialCommunityIcons name="email-outline" size={24} color={Colors.primary}/>
-            <Text>email@gmail.com</Text>
+            <Text>{authContext?.authData?.email}</Text>
           </View>
         </View>
           <UserNavigation/>
@@ -73,6 +73,11 @@ const styles = StyleSheet.create({
       marginLeft: 20,
       marginBottom: 15,
       gap: 20
+    },
+    userImage : {
+      height: 100,
+      width: 100,
+      borderRadius: 50
     }
 
 });
