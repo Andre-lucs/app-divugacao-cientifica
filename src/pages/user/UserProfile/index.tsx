@@ -26,13 +26,13 @@ export default function() {
           <Image source={require('@/assets/images/user_profile_image.png')} style={styles.userImage}/>
           <View>
             <Text style={styles.userName}>{authContext?.authData?.username}</Text>
-            <Text>Estudante</Text>
+            <Text>{authContext.authData.educationLevel}</Text>
           </View>
         </View>
         <View>
           <View style={styles.userAdditionalInfo}>
             <Feather name="phone" size={24} color={Colors.primary} />
-            <Text>{}</Text>
+            <Text>(83) 9999-9999</Text>
           </View>
           <View style={styles.userAdditionalInfo}>
             <MaterialCommunityIcons name="email-outline" size={24} color={Colors.primary}/>
