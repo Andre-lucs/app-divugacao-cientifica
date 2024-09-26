@@ -4,25 +4,25 @@ import useEvents from "@/src/hooks/useEvents";
 import MyEventsPage from "@/src/pages/user/events/CreatedEvents";
 import { useContext, useEffect, useState } from "react";
 
-
-export default function(){
-
+export default function UserEvents() { 
   const [userEvents, setUserEvents] = useState<TEvent[]>([]);
-  const {getUserEvents} = useEvents();
-  const authContext = useContext(AuthContext);
-  
+  const { getUserEvents } = useEvents();
+  const authContext = useContext(AuthContext); 
+
   const fetchMyEventData = async () => {
-      if (authContext.authData.userId) {
-          const data = await getUserEvents(authContext.authData.userId);
-          setUserEvents(data);
-      }
+    if (authContext.authData.userId) { 
+      const data = await getUserEvents(authContext.authData.userId); 
+      setUserEvents(data); 
+    }
   };
 
   useEffect(() => {
     fetchMyEventData();
-}, []);
+  }, []); 
 
   return (
-    <MyEventsPage events={userEvents}/>
+    <MyEventsPage 
+      events={userEvents} 
+    />
   );
 }

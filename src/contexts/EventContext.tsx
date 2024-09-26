@@ -67,9 +67,9 @@ export const EventProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         }
     };
 
-    const registerForEvent = async (email: string, eventId: string) => {
+    const registerForEvent = async (userId: string, eventId: string) => {
         try {
-            const response = await fetchApi(`/evento/${eventId}/adicionar-participante/${email}`, {
+            const response = await fetchApi(`/evento/${eventId}/adicionar-participante/${userId}`, {
                 method: "post",
                 useToken: true,
             });

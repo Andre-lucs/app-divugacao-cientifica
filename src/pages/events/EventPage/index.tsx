@@ -20,7 +20,7 @@ import { TEvent, TMinicourse } from "@/@types/dataTypes";
 import { PORT, SERVER_IP } from "@/globalVariables";
 import { formatDate } from "@/src/utils/dateUtils";
 import Colors from "@/src/styles/Colors";
-import RegistrationModal from "@/src/components/Minicourses/RegistrationModal";
+import RegistrationModal from "@/src/components/Events/RegistrationModal";
 import useAuth from "@/src/hooks/useAuth";
 
 type EventPageProps = {

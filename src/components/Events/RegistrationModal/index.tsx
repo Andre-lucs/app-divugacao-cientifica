@@ -20,7 +20,7 @@ export default function RegistrationModal({ visible, onDismiss, eventId, onRegis
 
     async function registerUserForEvent() {
         try {
-            await registerForEvent(authData.email, eventId);
+            await registerForEvent(authData.userId, eventId);
             onDismiss();
         } catch (error) {
             console.error("Erro ao se inscrever no evento:", error);
