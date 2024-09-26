@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import Events from "@/src/pages/events/EventsPage";
-import { EventContext, EventContextType, EventProvider } from "@/src/contexts/EventContext";
+import { EventContext} from "@/src/contexts/EventContext";
 
 
 

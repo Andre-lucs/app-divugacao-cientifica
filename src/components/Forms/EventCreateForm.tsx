@@ -36,7 +36,7 @@ export default function (p: props) {
   const [errors, setErrors] = useState<ErrorMessagetype>({} as ErrorMessagetype);
 
   const handleChange = (field: keyof CreateEventResponse) => (value: string|Date|LatLng) => {
-    setRes(prevRes => ({ ...prevRes, [field]: value }));
+    setRes((prevRes: any) => ({ ...prevRes, [field]: value }));
   };
 
   return (

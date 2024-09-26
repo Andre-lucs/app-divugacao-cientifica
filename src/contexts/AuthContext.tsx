@@ -31,7 +31,6 @@ export function AuthProvider({children}:PropsWithChildren){
       const jsonValue = JSON.stringify(value);
       await AsyncStorage.setItem('authData', jsonValue);
     } catch (e) {
-      // saving error
     }
   };
 
@@ -66,7 +65,7 @@ export function AuthProvider({children}:PropsWithChildren){
       data
     });
     if (response?.data){
-      let dataToStore : AuthContextDataType = {authToken: response.data.token, isSignedIn: true, email: response.data.user.email, username: response.data.user.name, userId: response.data.user._id};
+      let dataToStore : AuthContextDataType = {authToken: response.data.token, isSignedIn: true, email: response.data.user.email, username: response.data.user.name, userId: response.data.user._id, educationLevel: response.data.user.educationLevel};
       setAuthData(dataToStore);
       storeData(dataToStore);
       router.replace("/");
@@ -101,7 +100,7 @@ export function AuthProvider({children}:PropsWithChildren){
   }
 
   function logOut(){
-    setAuthData({isSignedIn: false, authToken: "", email: "", username: "", userId: ""});
+    setAuthData({isSignedIn: false, authToken: "", email: "", username: "", userId: "", educationLevel: ""});
     AsyncStorage.removeItem('authData');
     if (pathName.startsWith("/auth/")) return;
     router.replace("/auth/");

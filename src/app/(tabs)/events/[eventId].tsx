@@ -5,16 +5,6 @@ import { useEffect, useState } from "react";
 import useEvents from "@/src/hooks/useEvents";
 import { TEvent } from "@/@types/dataTypes";
 
-type TEventResponse = {
-    imageUrl: string;
-    startDate: string;
-    endDate: string;
-    name: string;
-    theme: string;
-    organizer: string;
-    committee: string;
-    description: string;
-}
 
 export default function () {
 

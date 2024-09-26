@@ -17,7 +17,6 @@ export default function () {
   }
 
   useEffect(() => {
-    // Redefine o estado created quando o componente é desmontado
     return () => {
       setCreated(false);
     };
