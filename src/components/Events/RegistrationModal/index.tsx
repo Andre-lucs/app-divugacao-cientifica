@@ -4,6 +4,8 @@ import ButtonSecundary from "../../ButtonSecondary";
 import Colors from "@/src/styles/Colors";
 import useEvents from "@/src/hooks/useEvents";
 import useAuth from "@/src/hooks/useAuth";
+import { Redirect } from "expo-router";
+import { useState } from "react";
 
 type RegistrationModalProps = {
     visible: boolean;
@@ -15,17 +17,23 @@ type RegistrationModalProps = {
 export default function RegistrationModal({ visible, onDismiss, eventId, onRegisterSuccess }: RegistrationModalProps) {
 
     const { registerForEvent } = useEvents();
+    const [resgistered, setRegistered] = useState(false);
 
     const {authData} = useAuth();
 
     async function registerUserForEvent() {
         try {
             await registerForEvent(authData.userId, eventId);
+            setRegistered(true);
             onDismiss();
         } catch (error) {
             console.error("Erro ao se inscrever no evento:", error);
         }
     }
+
+    if(resgistered) {
+        return <Redirect href="/user/history"/>
+    } 
 
     return (
         <Portal>
