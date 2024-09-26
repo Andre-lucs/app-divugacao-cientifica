@@ -8,11 +8,11 @@ import StackHeader from "@/src/components/StackHeader";
 import { useRouter } from "expo-router";
 import { TEvent, TMinicourse } from "@/@types/dataTypes";
 import { PORT, SERVER_IP } from "@/globalVariables";
-import { Text } from "react-native";
+import { Text, Alert } from "react-native";
 import { formatDate } from "@/src/utils/dateUtils";
 import { useContext, useEffect, useState } from "react";
 import { MinicourseContext } from "@/src/contexts/MinicourseContext";
-import { MinicourseSectionComponent } from "@/src/components/Minicourses/MinicourseSection";
+import { EventContext } from "@/src/contexts/EventContext";
 
 type EventPageProps = {
     eventData: TEvent | null
@@ -22,32 +22,55 @@ export default function MyEventPage ({eventData}: EventPageProps) {
     const router = useRouter();
     const [minicourses, setMinicourses] = useState<TMinicourse[]>([]);
     const { getMinicoursesRequests } = useContext(MinicourseContext);
+    const { deleteEvent } = useContext(EventContext);
 
     const fetchMinicourses = async () => {
         if (eventData) {
             const fetchedMinicourses = await getMinicoursesRequests(eventData._id);
-            console.log("ajndansdas:"+fetchedMinicourses);
             setMinicourses(fetchedMinicourses);
         }
     };
+
     useEffect(() => {
         fetchMinicourses();
     }, [eventData]);
 
+    const confirmDelete = () => {
+        Alert.alert(
+            "Confirmar Exclusão",
+            "Tem certeza de que deseja excluir este evento?",
+            [
+                {
+                    text: "Cancelar",
+                    style: "cancel"
+                },
+                {
+                    text: "Excluir",
+                    onPress: () => handleDeleteEvent()
+                }
+            ]
+        );
+    };
 
-    function goToUpdatePage(){
+    const handleDeleteEvent = async () => {
+        if (eventData) {
+            await deleteEvent(eventData._id);
+            router.push("/events");
+        }
+    };
+
+    const goToUpdatePage = () => {
         router.push("/events/editEvent");
-    }
+    };
 
-    
-    if(eventData)
+    if (eventData)
         return (
             <EventPageContainer>
                 <StackHeader/>
                 <EventImage source={{uri: `${SERVER_IP}:${PORT}${eventData.photo}`}}/>
                 <EventPageActions>
                     <ButtonEvent onPress={goToUpdatePage} title="Atualizar" color={`${Colors.blue}`}/>
-                    <ButtonEvent title="Excluir" color={`${Colors.red}`}/>
+                    <ButtonEvent onPress={confirmDelete} title="Excluir" color={`${Colors.red}`}/>
                 </EventPageActions>
                 <EventInfo>
                     <EventPageTitle>Informações Gerais:</EventPageTitle>
@@ -59,26 +82,23 @@ export default function MyEventPage ({eventData}: EventPageProps) {
                     <EventName>{eventData.name}</EventName>
                     <EventAdditionalInfoLabel>
                         Tema:
-                            <EventAdditionalInfo> {eventData.theme}</EventAdditionalInfo>
+                        <EventAdditionalInfo> {eventData.theme}</EventAdditionalInfo>
                     </EventAdditionalInfoLabel>
                     <EventAdditionalInfoLabel>
-                        Comitê Organizador: 
-                            <EventAdditionalInfo> {eventData.organizingCommitte}</EventAdditionalInfo>
+                        Comitê Organizador:
+                        <EventAdditionalInfo> {eventData.organizingCommitte}</EventAdditionalInfo>
                     </EventAdditionalInfoLabel>
                     <EventAdditionalInfoLabel>
-                        Descrição: 
-                            <EventAdditionalInfo> {eventData.description}</EventAdditionalInfo>
+                        Descrição:
+                        <EventAdditionalInfo> {eventData.description}</EventAdditionalInfo>
                     </EventAdditionalInfoLabel>
                     <RowDetail/>
                 </EventInfo>
                 <MinicourseRequestsSection eventData={eventData} minicoursesData={minicourses} setMinicoursesData={setMinicourses} />
                 <EventPageTitle>Localização:</EventPageTitle>
-                <Map coordinates={ {latitude:eventData.location.coordinates[0], longitude:eventData.location.coordinates[1]}} title={eventData.name} />
-                </EventPageContainer>
-        )
-        return <Text>Evento não encontrado</Text>
+                <Map coordinates={{ latitude: eventData.location.coordinates[0], longitude: eventData.location.coordinates[1] }} title={eventData.name} />
+            </EventPageContainer>
+        );
+
+    return <Text>Evento não encontrado</Text>;
 }
-
-
-
-

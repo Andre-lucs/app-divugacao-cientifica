@@ -3,8 +3,6 @@ import { createContext, useState } from "react";
 import { Alert } from "react-native";
 import { fetchApi } from "@/src/services/api";
 
-
-
 export type EventContextType = {
     getEvents: () => Promise<any>;
     events: TEvent[];
@@ -12,6 +10,7 @@ export type EventContextType = {
     userEventHistory: (userId: string) => Promise<any>;
     getUserEvents: (userId: string) => Promise<any>;
     registerForEvent: (email: string, eventId: string) => Promise<any> | null;
+    deleteEvent: (eventId: string) => Promise<void>;
 };
 
 export const EventContext = createContext<EventContextType>({
@@ -21,6 +20,7 @@ export const EventContext = createContext<EventContextType>({
     getEventById: async () => null,
     getUserEvents: async () => null,
     registerForEvent: (email: string, eventId: string) => null,
+    deleteEvent: async () => {},
 });
 
 export const EventProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -73,7 +73,6 @@ export const EventProvider: React.FC<{ children: React.ReactNode }> = ({ childre
                 method: "post",
                 useToken: true,
             });
-            console.log(response)
             if (response?.status === 200) {
                 Alert.alert("Sucesso", "Usuário adicionado ao evento com sucesso!");
             } else {
@@ -85,8 +84,36 @@ export const EventProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         }
     };
 
+    const deleteEvent = async (eventId: string) => {
+        try {
+            const response = await fetchApi(`/evento/${eventId}`, {
+                method: "delete",
+                useToken: true,
+            });
+            if (response?.status === 200) {
+                Alert.alert("Sucesso", "Evento excluído com sucesso!");
+                setEvents((prevEvents) => prevEvents.filter((event) => event._id !== eventId));
+            } else {
+                Alert.alert("Erro", "Não foi possível excluir o evento.");
+            }
+        } catch (err) {
+            console.error("Erro ao excluir o evento:", err);
+            Alert.alert("Erro", "Ocorreu um erro ao excluir o evento.");
+        }
+    };
+
     return (
-        <EventContext.Provider value={{ getEvents, events, getEventById, userEventHistory, getUserEvents, registerForEvent }}>
+        <EventContext.Provider
+            value={{
+                getEvents,
+                events,
+                getEventById,
+                userEventHistory,
+                getUserEvents,
+                registerForEvent,
+                deleteEvent,
+            }}
+        >
             {children}
         </EventContext.Provider>
     );
