@@ -21,9 +21,11 @@ export const MinicourseSectionComponent: React.FC<MinicourseSectionProps> = ({ m
     
     return (
         <MinicourseSection>
+            <View style={{alignItems: "flex-end"}}>
+                <ButtonEventComponent title="Solicitar criação" width={150} onPress={()=>Router.push({pathname:"/(tabs)/events/requestMinicourse/[eventId]", params:{eventId: eventData?._id}})}/>
+            </View>
             <EventPageTitle>Minicursos:</EventPageTitle>
             {eventStartDate < now && <View style={{alignSelf:"flex-end"}} >
-            <ButtonEventComponent title="Solicitar criação" width={150} onPress={()=>Router.push({pathname:"/(tabs)/events/requestMinicourse/[eventId]", params:{eventId: eventData?._id}})}/>
             </View>
             }
             {(!minicoursesData || minicoursesData.length === 0) 
