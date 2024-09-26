@@ -26,7 +26,6 @@ export default function () {
         const fetchEventData = async () => {
             if (eventId) {
                 const data = await getEventById(String(eventId));
-                console.log(data)
                 if (data)setEventData(data);
             }
         };

@@ -37,10 +37,8 @@ export const MinicourseProvider: React.FC<{ children: React.ReactNode }> = ({ ch
     const getMinicoursesByIds = async (id: string) => {
         try {
             const response = (await fetchApi(`/minicurso/event/${id}`, { useToken: true })).data as Array<any>;
-         
             const minicoursesData = response
-                .map(response => response.data as TMinicourse); 
-            
+                .map(response => response as TMinicourse).filter((i) => i !== undefined); 
             return minicoursesData;
         } catch (err) {
             console.error("Erro ao buscar minicursos pelos IDs:", err);

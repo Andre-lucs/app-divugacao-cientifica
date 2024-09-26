@@ -18,8 +18,7 @@ export const MinicourseSectionComponent: React.FC<MinicourseSectionProps> = ({ m
     const Router = useRouter();
 
     const eventStartDate = new Date(eventData?.startDate || "");
-
-
+    
     return (
         <MinicourseSection>
             <EventPageTitle>Minicursos:</EventPageTitle>
