@@ -23,6 +23,11 @@ export default function ({subject, date, userId, requestId, onResolved}: TMinico
     }
 
     if(!userId) {
+
+        function subscribe(){
+            courseContext.minicourseSubscribe(requestId);
+        }
+
         return (
             <MinicoursePreview>
                 <MinicourseInfoPreview>
@@ -30,7 +35,7 @@ export default function ({subject, date, userId, requestId, onResolved}: TMinico
                 </MinicourseInfoPreview>
                 <MinicoursePreviewActions>
                     <Text><MinicoursePreviewLabel>Data: </MinicoursePreviewLabel>{date}</Text>
-                    <ButtonEvent title="Increver-se"/>
+                    <ButtonEvent onPress={subscribe} title="Increver-se"/>
                 </MinicoursePreviewActions>
             </MinicoursePreview>
         )
